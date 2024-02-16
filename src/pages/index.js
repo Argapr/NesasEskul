@@ -5,7 +5,7 @@ import Navbar from "../components/navbar/navbarFeature.js";
 const homePage = () => {
   return (
     <main className="h-screen grid place-items-center">
-      <div className="bg-white h-[52rem] w-[106rem] rounded-lg mt-[2rem]"></div>
+      <div className="bg-white h-[47rem] w-[95rem] rounded-lg mt-[2rem]"></div>
       {/* start smartchat */}
       <div className="bg-[#2F2D2D] h-[50rem] w-[90rem] mt-[-5rem] rounded-lg">
         <p className="text-white m-4 text-2xl font-semibold">SmartChat</p>
@@ -26,7 +26,7 @@ const homePage = () => {
       </div>
       {/* end smartchat */}
       {/* start about */}
-      <div className="bg-[#2F2D2D] h-[52rem] w-[106rem] rounded-lg mt-[2rem]">
+      <div className="bg-[#2F2D2D] h-[50rem] w-[95rem] rounded-lg mt-[2rem]">
         <div className="grid grid-cols-3 gap-4 m-10">
           <div className="col-span-2">
             <p className="text-4xl text-white w-[50rem]">
@@ -58,12 +58,12 @@ const homePage = () => {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 m-10">
-          <Image src="/logo.png" alt="logo about" width={300} height={300} className="mt-[20rem]" />
-          <Image src="/1.jpg" alt="eskul marching band" width={500} height={500} className="h-[25rem] rounded-lg mt-[1rem]" />
-          <Image src="/2.jpg" alt="eskul marching band" width={500} height={500} className="h-[25rem] rounded-lg mt-[1rem]" />
+          <Image src="/logo.png" alt="logo about" width={300} height={300} className="mt-[17rem]" />
+          <Image src="/1.jpg" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
+          <Image src="/2.jpg" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
         </div>
         <div className="flex justify-center mt-[-1.5rem] ms-[-20rem]">
-          <button className="border border-[#fff] text-white font-bold py-2 px-4 rounded-full">
+          <button className="border border-[#fff] text-white font-bold py-[-1rem] px-4 rounded-full">
             <Link href="/galeri">Lihat semua</Link>
           </button>
           <button className="bg-white py-4 px-4 rounded-full ">
@@ -73,7 +73,7 @@ const homePage = () => {
       </div>
       {/* end about */}
       {/* start footer */}
-      <div className="bg-[#2F2D2D] h-[13rem] w-[106rem] rounded-lg mt-[2rem] px-10 mb-5" style={{ marginBottom: "2rem" }}>
+      <div className="bg-[#2F2D2D] h-[13rem] w-[95rem] rounded-lg mt-[2rem] px-10 mb-5" style={{ marginBottom: "2rem" }}>
         <p className="text-[#fff] text-lg mt-5">Hubungi kami</p>
         <div className="flex justify-between mt-5">
           <p className="text-white text-3xl">
