@@ -1,30 +1,30 @@
-import Image from "next/image";
+import Link from 'next/link';
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between bg-[#2f2d2d] rounded-full mx-10 px-6 py-3 h-20 z-50 mt-5">
+    <nav className="flex items-center justify-between bg-[#2f2d2d] rounded-3xl mx-10 px-6 py-3 h-20 z-50">
       <div className="logo">
         <Image src="/logo.png" alt="logo" height={100} width={130} />
       </div>
       <ul className="flex text-white text-lg">
         <li>
-          <a href="/">Beranda</a>
+          <Link href="/">Beranda</Link>
         </li>
         <li className="mx-2">|</li>
         <li>
-          <a href="/galeri">Galeri</a>
+          <Link href="/galeri">Galeri</Link>
         </li>
         <li className="mx-2">|</li>
         <li>
-          <a href="/pengumuman">Pengumuman</a>
+          <Link href="/pengumuman">Pengumuman</Link>
         </li>
         <li className="mx-2">|</li>
         <li>
-          <a href="/profil">Profil</a>
+          <Link href="/profil">Profil</Link>
         </li>
         <li className="mx-2">|</li>
         <li>
-          <a href="/jadwal">Jadwal</a>
+          <Link href="/jadwal">Jadwal</Link>
         </li>
       </ul>
       <div className="btn-forum flex">
