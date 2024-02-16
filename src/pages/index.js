@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "../components/navbar/navbarFeature.js";
 
 const homePage = () => {
@@ -36,22 +37,22 @@ const homePage = () => {
           <div className="ps-[15rem]">
             <ul className="text-white text-3xl">
               <li>
-                <a href="">Galeri</a>
+                <Link href="">Galeri</Link>
               </li>
               <li className="pt-2">
-                <a href="" className="text-[#ffffff7a]">
+                <Link href="" className="text-[#ffffff7a]">
                   Pengumuman
-                </a>
+                </Link>
               </li>
               <li className="pt-2">
-                <a href="" className="text-[#ffffff48]">
+                <Link href="" className="text-[#ffffff48]">
                   Jadwal
-                </a>
+                </Link>
               </li>
               <li className="pt-2">
-                <a href="" className="text-[#ffffff24]">
+                <Link href="" className="text-[#ffffff24]">
                   Profil
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -63,7 +64,7 @@ const homePage = () => {
         </div>
         <div className="flex justify-center mt-[-1.5rem] ms-[-20rem]">
           <button className="border border-[#fff] text-white font-bold py-2 px-4 rounded-full">
-            <a href="/galeri">Lihat semua</a>
+            <Link href="/galeri">Lihat semua</Link>
           </button>
           <button className="bg-white py-4 px-4 rounded-full ">
             <Image src="/next-to-forum.png" alt="next-to-forum" height={25} width={25} className="rotate-[-25deg]" />
@@ -89,19 +90,19 @@ const homePage = () => {
           <Image src="/logo.png" alt="logo in footer" width={100} height={100} className="" />
           <ul className="flex text-[#fff]">
             <li style={{ marginRight: "1rem" }}>
-              <a href="">Beranda</a>
+              <Link href="">Beranda</Link>
             </li>
             <li style={{ marginRight: "1rem" }}>
-              <a href="">Galeri</a>
+              <Link href="">Galeri</Link>
             </li>
             <li style={{ marginRight: "1rem" }}>
-              <a href="">Pengumuman</a>
+              <Link href="">Pengumuman</Link>
             </li>
             <li style={{ marginRight: "1rem" }}>
-              <a href="">Profil</a>
+              <Link href="">Profil</Link>
             </li>
             <li>
-              <a href="">Jadwal</a>
+              <Link href="">Jadwal</Link>
             </li>
           </ul>
           <p className="text-[#fff]">© 2024 ARGA PRATAMA</p>
