@@ -4,14 +4,14 @@ import Navbar from "../components/navbar/navbarFeature.js";
 
 const homePage = () => {
   return (
-    <div>
+    <>
       <header>
         <Navbar />
       </header>
-      <main>
-        <div className=""></div>
+      <main clas>
+        <div className="flex"></div>
       </main>
-    </div>
+    </>
   );
 };
 
