@@ -1,27 +1,23 @@
-import { useState } from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import Navbar from "../components/navbar/navbarFeature.js";
 
-const DateInput = () => {
-  const [selectedDate, setSelectedDate] = useState('');
-
-  const handleDateChange = (e) => {
-    setSelectedDate(e.target.value);
-  };
-
+const jadwal = () => {
   return (
-    <div className="mt-4">
-      <label htmlFor="date" className="block text-sm font-medium text-gray-700">
-        Tanggal:
-      </label>
-      <input
-        type="date"
-        id="date"
-        name="date"
-        value={selectedDate}
-        onChange={handleDateChange}
-        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-      />
-    </div>
+    <>
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <div className="flex">
+          <div className="h-10 w-10 rounded-full border border-[#fff] justify-center">
+            <Image src="/calendar.png" alt="" width={20} height={20} />
+          </div>
+          <p className="text-[#fff]">20 - 27 Januari</p>
+        </div>
+      </main>
+    </>
   );
 };
 
-export default DateInput;
+export default jadwal;

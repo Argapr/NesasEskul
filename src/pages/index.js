@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../components/navbar/navbarFeature.js";
+import Navbar from "../components/navbar/navbarhome.js";
 
 const homePage = () => {
   return (
     <main className="h-screen grid place-items-center">
-      <div className="bg-white h-[47rem] w-[95rem] rounded-lg mt-[2rem]"></div>
+      <Navbar />
+      <div className="bg-blue-500 h-[47rem] w-[95rem] rounded-lg mt-[2rem]"></div>
       {/* start smartchat */}
       <div className="bg-[#2F2D2D] h-[50rem] w-[90rem] mt-[-5rem] rounded-lg">
         <p className="text-white m-4 text-2xl font-semibold">SmartChat</p>
@@ -59,8 +60,8 @@ const homePage = () => {
         </div>
         <div className="grid grid-cols-3 gap-2 m-10">
           <Image src="/logo.png" alt="logo about" width={300} height={300} className="mt-[17rem]" />
-          <Image src="/1.jpg" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
-          <Image src="/2.jpg" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
+          <Image src="/1.JPG" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
+          <Image src="/2.JPG" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
         </div>
         <div className="flex justify-center mt-[-1.5rem] ms-[-20rem]">
           <button className="border border-[#fff] text-white font-bold py-[-1rem] px-4 rounded-full">
