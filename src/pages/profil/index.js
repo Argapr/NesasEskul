@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Navbar from "../components/navbar/navbarFeature.js";
+import Navbar from "../../components/navbar/navbarFeature.js";
 
 const homePage = () => {
   return (
@@ -38,7 +38,7 @@ const homePage = () => {
           <div className="grid grid-cols-4 gap-4">
             <div className="h-[25rem] bg-[#fff] rounded-lg pt-5">
               <div className="h-[20rem] bg-black mx-5 overflow-hidden rounded-lg">
-                <Image src="/1.jpg" alt="" height={700} width={600} objectFit="cover" className="rounded-lg" />
+                <Image src="/1.JPG" alt="" height={700} width={600} objectFit="cover" className="rounded-lg" />
               </div>
               <div className="mx-5 mt-2 grid grid-cols-3 gap-4">
                 <p className="col-span-2 text-2xl ms-2 font-semibold">Paskibra</p>
@@ -78,7 +78,7 @@ const homePage = () => {
           <div className="grid grid-cols-4 gap-4">
             <div className="h-[25rem] bg-[#fff] rounded-lg pt-5">
               <div className="h-[20rem] bg-black mx-5 overflow-hidden rounded-lg">
-                <Image src="/5.jpg" alt="" height={700} width={600} objectFit="cover" className="rounded-lg" />
+                <Image src="/5.JPG" alt="" height={700} width={600} objectFit="cover" className="rounded-lg" />
               </div>
               <div className="mx-5 mt-2 grid grid-cols-3 gap-4">
                 <p className="col-span-2 text-2xl ms-2 font-semibold">Paskibra</p>
@@ -87,7 +87,7 @@ const homePage = () => {
             </div>
             <div className="h-[25rem] bg-[#fff] rounded-lg pt-5">
               <div className="h-[20rem] bg-black mx-5 overflow-hidden rounded-lg">
-                <Image src="/6.jpg" alt="" height={675} width={460} objectFit="cover" className="rounded-lg" />
+                <Image src="/6.JPG" alt="" height={675} width={460} objectFit="cover" className="rounded-lg" />
               </div>
               <div className="mx-5 mt-2 grid grid-cols-3 gap-4">
                 <p className="col-span-2 text-2xl ms-2 font-semibold">Marching Band</p>
