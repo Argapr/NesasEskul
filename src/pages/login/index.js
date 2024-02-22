@@ -5,7 +5,9 @@ const login = () => {
   return (
     <div className="relative bg-[#fff] h-[100vh] w-[100%] flex justify-center items-center flex-col">
       <div className="absolute top-7 left-0 ps-10 flex items-center">
-        <Image src="/logo-sekolah.png" alt="" height={30} width={50} />
+        <Link href="/">
+          <Image src="/logo-sekolah.png" alt="" height={30} width={50} />
+        </Link>
         <h1 className="text-3xl font-bold text-[#9A9A9A] ml-2">Login</h1>
       </div>
       <form className="h-[30rem] w-[25rem] bg-[#fff] drop-shadow-2xl rounded-lg justify-center items-center">

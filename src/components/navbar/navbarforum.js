@@ -1,39 +1,36 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
+
   return (
-    <nav className="flex items-center justify-between bg-[#fff] rounded-full mx-10 px-6 py-3 h-20 z-50 w-[95rem] absolute mb-[40rem]">
+    <nav className="flex items-center justify-between bg-[#2f2d2d] bg-opacity-50 backdrop-blur-lg rounded-full mx-[10rem] px-6 py-3 h-20 mt-5 z-50">
       <div className="logo">
-        <Image src="/logo.png" alt="logo" height={100} width={130} />
+        <Link href="/">
+          <Image src="/logo.png" alt="logo" height={100} width={130} />
+        </Link>
       </div>
-      <ul className="flex text-white text-lg bg-black bg-opacity-20 w-[30rem] h-[4rem] justify-center rounded-full items-center backdrop-blur-lg">
-        <li>
-          <Link href="/">Beranda</Link>
+      <ul className="flex text-white text-lg">
+        <li className={router.pathname === "/forum" ? "active" : ""}>
+          <Link href="/forum">Forum</Link>
         </li>
-        <li className="mx-2">|</li>
-        <li>
-          <Link href="/galeri">Galeri</Link>
-        </li>
-        <li className="mx-2">|</li>
-        <li>
-          <Link href="/pengumuman">Pengumuman</Link>
-        </li>
-        <li className="mx-2">|</li>
-        <li>
-          <Link href="/profil">Profil</Link>
-        </li>
-        <li className="mx-2">|</li>
-        <li>
-          <Link href="/jadwal">Jadwal</Link>
+        <li className="mx-2"></li>
+        <li className={router.pathname === "/forum/pengguna" ? "active" : ""}>
+          <Link href="/forum/pengguna">Pengguna</Link>
         </li>
       </ul>
-      <div className="btn-login flex">
-        <button className="bg-white text-black font-bold py-2 px-4 rounded-full">Forum</button>
-        <button className="bg-white py-2 px-2 rounded-full ms-[-5px]">
-          <Image src="/next-to-forum.png" alt="next-to-forum" height={20} width={20} className="rotate-[-25deg]" />
+      <div className="btn-forum flex">
+        <button className="bg-transparent border border-[#fff] text-[#fff] font-bold py-2 px-4 rounded-full">
+          <Link href="/login">Login</Link>
         </button>
       </div>
+      <style jsx>{`
+        .active {
+          font-weight: bold;
+        }
+      `}</style>
     </nav>
   );
 };

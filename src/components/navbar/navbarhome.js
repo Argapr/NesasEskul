@@ -29,9 +29,13 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="btn-forum flex">
-        <button className="bg-white text-black font-bold py-2 px-4 rounded-full">Forum</button>
+        <button className="bg-white text-black font-bold py-2 px-4 rounded-full">
+          <Link href="/forum">Forum</Link>
+        </button>
         <button className="bg-white py-2 px-2 rounded-full ms-[-5px]">
-          <Image src="/next-to-forum.png" alt="next-to-forum" height={20} width={20} className="rotate-[-25deg]" />
+          <Link href="/forum">
+            <Image src="/next-to-forum.png" alt="next-to-forum" height={20} width={20} className="rotate-[-25deg]" />
+          </Link>
         </button>
       </div>
     </nav>
