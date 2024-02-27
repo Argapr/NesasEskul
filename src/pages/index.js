@@ -1,8 +1,20 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/navbar/navbarhome.js";
 
-const homePage = () => {
+const HomePage = () => {
+  const [image1, setImage1] = useState("/1.JPG");
+  const [image2, setImage2] = useState("/2.JPG");
+  const [galleryLink, setGalleryLink] = useState("/galeri");
+
+  const handleLinkClick = (image1Url, image2Url, link, event) => {
+    event.preventDefault();
+    setImage1(image1Url);
+    setImage2(image2Url);
+    setGalleryLink(link);
+  };
+
   return (
     <main className="h-screen grid place-items-center">
       <Navbar />
@@ -38,20 +50,17 @@ const homePage = () => {
           <div className="ps-[15rem]">
             <ul className="text-white text-3xl">
               <li>
-                <Link href="">Galeri</Link>
+                <Link href="/" onClick={(e) => handleLinkClick("/1.JPG", "/2.JPG", "/galeri", e)}>
+                  Galeri
+                </Link>
               </li>
               <li className="pt-2">
-                <Link href="" className="text-[#ffffff7a]">
+                <Link href="/" onClick={(e) => handleLinkClick("/2.JPG", "/1.JPG", "/pengumuman", e)}>
                   Pengumuman
                 </Link>
               </li>
               <li className="pt-2">
-                <Link href="" className="text-[#ffffff48]">
-                  Jadwal
-                </Link>
-              </li>
-              <li className="pt-2">
-                <Link href="" className="text-[#ffffff24]">
+                <Link href="/" onClick={(e) => handleLinkClick("/profil.png", "/profil-image.jpg", "/profil", e)}>
                   Profil
                 </Link>
               </li>
@@ -60,15 +69,17 @@ const homePage = () => {
         </div>
         <div className="grid grid-cols-3 gap-2 m-10">
           <Image src="/logo.png" alt="logo about" width={300} height={300} className="mt-[17rem]" />
-          <Image src="/1.JPG" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
-          <Image src="/2.JPG" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
+          <Image src={image1} alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
+          <Image src={image2} alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
         </div>
         <div className="flex justify-center mt-[-1.5rem] ms-[-20rem]">
           <button className="border border-[#fff] text-white font-bold py-[-1rem] px-4 rounded-full">
-            <Link href="/galeri">Lihat semua</Link>
+            <Link href={galleryLink}>Lihat semua</Link>
           </button>
           <button className="bg-white py-4 px-4 rounded-full ">
-            <Image src="/next-to-forum.png" alt="next-to-forum" height={25} width={25} className="rotate-[-25deg]" />
+            <Link href={galleryLink}>
+              <Image src="/next-to-forum.png" alt="next-to-forum" height={25} width={25} className="rotate-[-25deg]" />
+            </Link>
           </button>
         </div>
       </div>
@@ -91,19 +102,19 @@ const homePage = () => {
           <Image src="/logo.png" alt="logo in footer" width={100} height={100} className="" />
           <ul className="flex text-[#fff]">
             <li style={{ marginRight: "1rem" }}>
-              <Link href="">Beranda</Link>
+              <Link href="/">Beranda</Link>
             </li>
             <li style={{ marginRight: "1rem" }}>
-              <Link href="">Galeri</Link>
+              <Link href="/galeri">Galeri</Link>
             </li>
             <li style={{ marginRight: "1rem" }}>
-              <Link href="">Pengumuman</Link>
+              <Link href="/pengumuman">Pengumuman</Link>
             </li>
             <li style={{ marginRight: "1rem" }}>
-              <Link href="">Profil</Link>
+              <Link href="/profil">Profil</Link>
             </li>
             <li>
-              <Link href="">Jadwal</Link>
+              <Link href="/jadwal">Jadwal</Link>
             </li>
           </ul>
           <p className="text-[#fff]">© 2024 ARGA PRATAMA</p>
@@ -115,4 +126,4 @@ const homePage = () => {
   );
 };
 
-export default homePage;
+export default HomePage;

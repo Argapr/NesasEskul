@@ -1,17 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const login = () => {
+const Login = () => {
   return (
-    <div className="relative bg-[#fff] h-[100vh] w-[100%] flex justify-center items-center flex-col">
+    <div className="relative bg-[#fff] h-screen w-full flex justify-center items-center flex-col">
       <div className="absolute top-7 left-0 ps-10 flex items-center">
         <Link href="/">
           <Image src="/logo-sekolah.png" alt="" height={30} width={50} />
         </Link>
         <h1 className="text-3xl font-bold text-[#9A9A9A] ml-2">Login</h1>
       </div>
-      <form className="h-[30rem] w-[25rem] bg-[#fff] drop-shadow-2xl rounded-lg justify-center items-center">
-        <p className="text-[#9A9A9A] font-semibold text-[2rem] text-center mt-5">Welcome</p>
+      <form className="h-[30rem] w-[25rem] bg-[#fff] shadow-xl rounded-lg flex justify-center items-center flex-col">
+        <p className="text-[#9A9A9A] font-semibold text-2xl text-center mt-5">Welcome</p>
         <div className="mx-10 mt-11">
           <label className="text-[#9A9A9A] font-semibold">Email</label>
           <input type="email" className="h-[3rem] w-[20rem] border border-[#9A9A9A] rounded-lg focus:outline-none px-4 py-4" />
@@ -20,7 +20,7 @@ const login = () => {
           <button className="h-[4rem] w-[20rem] bg-[#9A9A9A] text-[#fff] text-2xl rounded-xl mt-[4rem]">Login</button>
           <div className="flex items-center mt-2">
             <div className="h-[2px] w-[3rem] bg-[#9A9A9A] rounded-lg mx-1"></div>
-            <p className="text-[#9A9A9A] text-[1rem]">login menggunakan google</p>
+            <p className="text-[#9A9A9A] text-[1rem]">Login menggunakan Google</p>
             <div className="h-[2px] w-[3rem] bg-[#9A9A9A] rounded-lg mx-1"></div>
           </div>
           <div className="flex justify-center items-center flex-col mt-3">
@@ -36,4 +36,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
