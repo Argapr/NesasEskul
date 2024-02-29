@@ -187,7 +187,7 @@ const ForumHome = () => {
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Literasi</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-3"></div>=
+                  <div className="h-3"></div>
                 </div>
               )}
 

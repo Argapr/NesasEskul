@@ -5,17 +5,20 @@ import { collection, addDoc } from "firebase/firestore";
 const AddToFirestoreForm = () => {
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
+    const [kelas, setKelas] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const docRef = await addDoc(collection(db, "messages"), {
+            const docRef = await addDoc(collection(db, "murid"), {
                 name: name,
                 message: message,
+                kelas: kelas,
             });
             console.log("Document written with ID: ", docRef.id);
             setName('');
             setMessage('');
+            setKelas('');
             alert("Data added to Firestore DB!");
         } catch (error) {
             console.error("Error adding document: ", error);
@@ -40,6 +43,14 @@ const AddToFirestoreForm = () => {
                     id="message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                ></textarea>
+            </div>
+            <div>
+                <label htmlFor="kelas">Kelas:</label>
+                <textarea
+                    id="kelas"
+                    value={kelas}
+                    onChange={(e) => setKelas(e.target.value)}
                 ></textarea>
             </div>
             <button type="submit">Submit</button>

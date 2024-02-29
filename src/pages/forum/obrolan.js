@@ -103,7 +103,7 @@ const Question = () => {
                 (selectedEskul === "Seni Tari" && <Image src="/kesenian.png" alt="" height={50} width={50} />) ||
                 (selectedEskul === "Karawitan" && <Image src="/kesenian.png" alt="" height={50} width={50} />) ||
                 (selectedEskul === "Paduan Suara" && <Image src="/kesenian.png" alt="" height={50} width={50} />) ||
-                (selectedEskul === "marching band" && <Image src="/kesenian.png" alt="" height={50} width={50} />) ||
+                (selectedEskul === "Marching Band" && <Image src="/kesenian.png" alt="" height={50} width={50} />) ||
                 (selectedEskul === "Tata Rias" && <Image src="/pkk.png" alt="" height={50} width={50} />) ||
                 (selectedEskul === "Tata Boga" && <Image src="/pkk.png" alt="" height={50} width={50} />) ||
                 (selectedEskul === "Tata Busana" && <Image src="/pkk.png" alt="" height={50} width={50} />) ||
@@ -169,7 +169,7 @@ const Question = () => {
                       {/* Input untuk pertanyaan */}
                       <div className="mb-4 mt-5">
                         <label htmlFor="question" className="block text-sm font-medium text-gray-700">
-                          Pertanyaan
+                          Pertanyaan?
                         </label>
                         <input type="text" id="question" name="question" placeholder="awali dengan APA dan BAGAIMANA dan MENGAPA" className="mt-1 p-2 w-full border-[#706b6b] border-b-2 focus:outline-none" />
                       </div>
