@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "../../components/navbar/navbarforum.js";
+import { useRouter } from "next/router";
 
 const ForumHome = () => {
   const [selectedCategory, setSelectedCategory] = useState("Populer");
+  const router = useRouter();
+
+  useEffect(() => {
+    const { category } = router.query;
+    if (category) {
+      setSelectedCategory(category);
+    }
+  }, [router.query]);
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    router.push(`/forum?category=${category}`);
+  };
+
+  const handleEskulClick = (eskul) => {
+    router.push(`/forum/obrolan?eskul=${eskul}`);
   };
 
   return (
@@ -51,27 +65,27 @@ const ForumHome = () => {
 
               {selectedCategory === "Keagamaan" && (
                 <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Nasyid")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Nasyid</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tahfidz")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tahfidz</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("BTQ")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">BTQ</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Kaligrafi")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Kaligrafi</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E4C9A9] border-l-4 border-[#EB9F44] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4C9A9] border-l-4 border-[#EB9F44] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Qiroat")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Qiroat</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Marawis")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Marawis</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
@@ -81,15 +95,15 @@ const ForumHome = () => {
 
               {selectedCategory === "Teknologi" && (
                 <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("HOVER")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">HOVER</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("IT Club")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">IT Club</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("PLH")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">PLH</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
@@ -99,19 +113,19 @@ const ForumHome = () => {
 
               {selectedCategory === "Kesenian" && (
                 <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Seni Tari")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Seni Tari</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Karawitan")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Karawitan</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Paduan Suara")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Paduan Suara</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Marching Band")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Marching Band</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
@@ -121,15 +135,15 @@ const ForumHome = () => {
 
               {selectedCategory === "PKK" && (
                 <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tata Rias")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tata Rias</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tata Boga")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tata Boga</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tata Busana")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tata Busana</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
@@ -139,19 +153,19 @@ const ForumHome = () => {
 
               {selectedCategory === "Organisasi" && (
                 <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("PMR")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">PMR</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Paskibra")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Paskibra</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Pramuka")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Pramuka</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("PIK-R")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">PIK-R</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
@@ -161,15 +175,15 @@ const ForumHome = () => {
 
               {selectedCategory === "Bahasa" && (
                 <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("English Club")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">English Club</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Nihongo Kai")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Nihongo Kai</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Literasi")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Literasi</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
@@ -179,23 +193,23 @@ const ForumHome = () => {
 
               {selectedCategory === "Olahraga" && (
                 <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Volley Ball")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Volley Ball</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Basket Ball")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Basket Ball</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Bulu Tangkis")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Bulu Tangkis</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Hand Ball")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Hand Ball</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E4C9A9] border-l-4 border-[#EB9F44] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4C9A9] border-l-4 border-[#EB9F44] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Futsal")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Futsal</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
@@ -205,15 +219,15 @@ const ForumHome = () => {
 
               {selectedCategory === "Bela Diri" && (
                 <div className="mx-5">
-                  <div className="Tarung-derajat h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tarung Derajat")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tarung Derajat</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Pencat Silat")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Pencak Silat</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3">
+                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Karate")}>
                     <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Karate</h1>
                     <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
                   </div>
