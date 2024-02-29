@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCXzT-7tJ636J_Y_ERP6cqfL6cUBkW_8mI",
-  authDomain: "nesaseskul.firebaseapp.com",
+  authDomain: "nesas-eskul.vercel.app",
   projectId: "nesaseskul",
   storageBucket: "nesaseskul.appspot.com",
   messagingSenderId: "288947967677",
