@@ -7,6 +7,7 @@ const Question = () => {
   const [selectedEskul, setSelectedEskul] = useState("Null");
   const [searchInput, setSearchInput] = useState(""); // State untuk menyimpan nilai input pencarian
   const [showOverlay, setShowOverlay] = useState(false); // State untuk menampilkan atau menyembunyikan overlay
+  const [questions, setQuestions] = useState([]); // State untuk menyimpan daftar pertanyaan
   const router = useRouter();
 
   useEffect(() => {
@@ -63,6 +64,25 @@ const Question = () => {
 
     if (file) {
       reader.readAsDataURL(file); // Membaca file sebagai URL data
+    }
+  };
+
+  const handleQuestionSubmit = (event) => {
+    event.preventDefault(); // Mencegah perilaku default form submission
+    const questionInput = document.getElementById("question"); // Ambil elemen input pertanyaan
+    const newQuestionText = questionInput.value.trim(); // Ambil teks pertanyaan dari input
+
+    if (newQuestionText !== "") {
+      const newQuestion = {
+        id: questions.length + 1,
+        text: newQuestionText,
+      };
+
+      setQuestions([...questions, newQuestion]); // Tambahkan pertanyaan baru ke dalam daftar pertanyaan
+      questionInput.value = ""; // Kosongkan input setelah pertanyaan ditambahkan
+
+      // Atau, jika Anda ingin mereset form setelah pengiriman
+      // event.target.reset();
     }
   };
 
@@ -132,12 +152,31 @@ const Question = () => {
             </div>
             <div>
               {/* Tampilkan konten sesuai dengan selectedEskul */}
-              {selectedEskul === "Paskibra" && (
-                <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer">
-                  <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Nasyid</h1>
-                  <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
+              {questions.map((question) => (
+                <div key={question.id} className="bg-[#fff] mt-5 shadow-xl pt-2">
+                  <div className="h-12 mx-2 flex justify-between items-center">
+                    <div className="h-10 w-10 rounded-full bg-black relative flex items-center">
+                      <Image src="/profil.jpeg" alt="" height={50} width={50} objectFit="cover" className="rounded-full" />
+                      <div className="ms-2">
+                        <h1 className="font-bold text-2xl">Yuga</h1>
+                      </div>
+                    </div>
+                    <div>
+                      <button className="border border-[#747474] bg-transparent text-[#747474] h-7 w-[6rem] rounded-full mx-1">PKK</button>
+                    </div>
+                  </div>
+                  <div className="question">
+                    <p className="judul font-bold ms-5">{question.text}</p>
+                    <p className="deskripsi font-normal ms-5">saya membutuhkan jawaban ini utnuk tes masuk eskul yang ada di smkn 1 subang</p>
+                    <p className="font-semibold ms-5 mt-3">5 jawaban</p>
+                    <button className="h-[2rem] w-[6rem] bg-transparent border border-[#555353] flex ms-3 rounded-lg items-center justify-center">
+                      <Image src="/icon-jawab.png" alt="icon jawab" height={30} width={20} />
+                      <p className="">Jawab</p>
+                    </button>
+                    <div className="h-1"></div>
+                  </div>
                 </div>
-              )}
+              ))}
             </div>
           </div>
           <div className="kategori">
@@ -150,7 +189,7 @@ const Question = () => {
               <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
                 <div className="bg-white p-8 rounded-lg h-auto">
                   {/* tombol untuk menutup overflay */}
-                  <button type="button" className="rounded-md" onClick={handleCloseOverlay}>
+                  <button type="button" className="rounded-full h-10 w-10 bg-[#f1eeee] items-center flex justify-center" onClick={handleCloseOverlay}>
                     <Image src="/close.png" alt="" height={15} width={15} />
                   </button>
                   {/* Tombol untuk memilih jenis form */}
@@ -174,11 +213,9 @@ const Question = () => {
                         <input type="text" id="question" name="question" placeholder="awali dengan APA dan BAGAIMANA dan MENGAPA" className="mt-1 p-2 w-full border-[#706b6b] border-b-2 focus:outline-none" />
                       </div>
                       {/* Tombol untuk mengirim pertanyaan*/}
-                      <div className="flex justify-end items-end">
-                        <button type="button" className="bg-blue-300 px-4 py-2 rounded-md">
-                          Buat
-                        </button>
-                      </div>
+                      <button type="submit" className="bg-blue-300 px-4 py-2 rounded-md" onClick={handleQuestionSubmit}>
+                        Buat
+                      </button>
                     </form>
                   )}
 
