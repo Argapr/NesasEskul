@@ -17,8 +17,9 @@ const HomePage = () => {
 
   return (
     <main className="h-screen grid place-items-center">
+      <div className="bg-blue-500 h-[47rem] w-[95rem] rounded-lg mt-[2rem]">
       <Navbar />
-      <div className="bg-blue-500 h-[47rem] w-[95rem] rounded-lg mt-[2rem]"></div>
+      </div>
       {/* start smartchat */}
       <div className="bg-[#2F2D2D] h-[50rem] w-[90rem] mt-[-5rem] rounded-lg">
         <p className="text-white m-4 text-2xl font-semibold">SmartChat</p>
