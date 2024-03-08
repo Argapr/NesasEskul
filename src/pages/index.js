@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/navbar/navbarhome.js";
@@ -8,20 +8,47 @@ const HomePage = () => {
   const [image2, setImage2] = useState("/2.JPG");
   const [galleryLink, setGalleryLink] = useState("/galeri");
 
+  // State to manage whether to show the scroll-to-top button
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
+  // Function to handle scrolling to the top of the page
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Optional - smooth scrolling animation
+    });
+  };
+
+  // Event listener to check if the user has scrolled down enough to show the button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleLinkClick = (image1Url, image2Url, link, event) => {
     event.preventDefault();
     setImage1(image1Url);
     setImage2(image2Url);
     setGalleryLink(link);
   };
-
   return (
     <main className="lg:m-10 m-2">
       <div className="bg-blue-500 h-screen rounded-lg">
         <Navbar />
       </div>
       {/* start smartchat */}
-      <div className="bg-[#2F2D2D] relative h-screen md:mx-12 mx-2 mt-[-9rem] rounded-lg flex justify-center items-center flex-col">
+      <div className="bg-[#2F2D2D] relative h-[40rem] lg:h-screen md:h-[50rem] md:mx-12 mx-2 mt-[-9rem] rounded-lg flex justify-center items-center flex-col">
         <p className="text-white absolute left-5 top-2 text-2xl font-semibold">SmartChat</p>
         <div className="w-full h-[40rem] flex flex-col justify-center items-center">
           <Image src="/smartchat-logo.png" alt="logo" height={100} width={100} className="mx-auto w-[15%] md:w-[10%] lg:w-[7%] object-contain" />
@@ -30,10 +57,10 @@ const HomePage = () => {
           </p>
         </div>
 
-        <div className="relative w-full md:px-10 px-5">
-          <input type="text" placeholder="Cari jawaban" className="w-full px-4 py-4 rounded-lg focus:outline-none" />
-          <button className="absolute inset-y-2 md:right-12 right-7 flex items-center border border-[#828282] rounded-lg">
-            <Image src="/kirim.png" alt="icon logo" height={50} width={50} />
+        <div className="relative w-full md:px-10 px-5 mb-5">
+          <input type="text" placeholder="Cari jawaban" className="w-full px-2 py-2 md:px-4 md:py-4 rounded-lg focus:outline-none" />
+          <button className="absolute inset-y-1 md:inset-y-2 md:right-12 right-0 flex items-center">
+            <Image src="/kirim.png" alt="icon logo" height={50} width={50} className="w-[60%] md:w-[70%] lg:w-[90%] object-contain" />
           </button>
         </div>
       </div>
@@ -113,6 +140,19 @@ const HomePage = () => {
         <div className="h-2"></div>
       </div>
       {/* end footer */}
+      {/* Scroll-to-top button */}
+      {showScrollButton && (
+        <div className="fixed bottom-10 right-5 md:right-10 bg-[#fff] px-4 py-4 rounded-full shadow cursor-pointer" onClick={scrollToTop}>
+          <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-7">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              {" "}
+              <path stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 18V2m0 0l7 7m-7-7L3 9"></path>{" "}
+            </g>
+          </svg>
+        </div>
+      )}
     </main>
   );
 };
