@@ -19,6 +19,7 @@ const Galeri = () => {
   const [galeriData, setGaleriData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null); // State untuk menyimpan kategori yang dipilih
 
   useEffect(() => {
     async function fetchData() {
@@ -46,9 +47,22 @@ const Galeri = () => {
     setSearchTerm(e.target.value);
   };
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
   const filteredData = galeriData.filter((galeri) => {
-    return galeri.name.toLowerCase().includes(searchTerm.toLowerCase());
+    // Jika tidak ada kategori yang dipilih, tampilkan semua data
+    if (selectedCategory === null) {
+      return galeri.name.toLowerCase().includes(searchTerm.toLowerCase());
+    } else {
+      // Jika kategori telah dipilih, tampilkan hanya data dengan kategori yang sesuai
+      return galeri.kategori === selectedCategory &&
+             galeri.name.toLowerCase().includes(searchTerm.toLowerCase());
+    }
   });
+  
+  
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -87,30 +101,24 @@ const Galeri = () => {
           />
         </div>
         <div className="flex ms-10 flex-wrap mt-5 md:mt-0">
-          <button className="md:m-5 m-1 border border-[#fff] text-[#fff] p-2  rounded-lg hover:bg-[#fff] hover:text-[#000]">
+          {/* Tombol kategori */}
+          <button
+            className={`md:m-5 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === "Keagamaan" ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`}
+            onClick={() => handleCategoryChange("Keagamaan")}
+          >
             <p className="text-xs md:text-lg">Keagamaan</p>
           </button>
-          <button className="md:m-5  m-1 border border-[#fff] text-[#fff] p-2 rounded-xl hover:bg-[#fff] hover:text-[#000]">
+          <button
+            className={`md:m-5 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === "Teknologi" ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`}
+            onClick={() => handleCategoryChange("Teknologi")}
+          >
             <p className="text-xs md:text-lg">Teknologi</p>
           </button>
-          <button className="md:m-5  m-1 border border-[#fff] text-[#fff] p-2 rounded-xl hover:bg-[#fff] hover:text-[#000]">
+          <button className={`md:m-5 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === "Kesenian" ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`} onClick={() => handleCategoryChange("Kesenian")}>
             <p className="text-xs md:text-lg">Kesenian</p>
           </button>
-          <button className="md:m-5  m-1 border border-[#fff] text-[#fff] p-2 rounded-xl hover:bg-[#fff] hover:text-[#000]">
-            <p className="text-xs md:text-lg">Organisasi</p>
-          </button>
-          <button className="md:m-5  m-1 border border-[#fff] text-[#fff] p-2 rounded-xl hover:bg-[#fff] hover:text-[#000]">
-            <p className="text-xs md:text-lg">PKK</p>
-          </button>
-          <button className="md:m-5  m-1 border border-[#fff] text-[#fff] p-2 rounded-xl hover:bg-[#fff] hover:text-[#000]">
-            <p className="text-xs md:text-lg">Olahraga</p>
-          </button>
-          <button className="md:m-5  m-1 border border-[#fff] text-[#fff] p-2 rounded-xl hover:bg-[#fff] hover:text-[#000]">
-            <p className="text-xs md:text-lg">Bahasa</p>
-          </button>
-          <button className="md:m-5  m-1 border border-[#fff] text-[#fff] p-2 rounded-xl hover:bg-[#fff] hover:text-[#000]">
-            <p className="text-xs md:text-lg">Bela Diri</p>
-          </button>
+          
+          {/* Tambahkan tombol kategori lainnya sesuai format yang sama */}
         </div>
         <div className="mx-2 md:mx-10 grid md:grid-cols-4 grid-cols-1 gap-4 mt-5">
           {filteredData.map((galeri) => (

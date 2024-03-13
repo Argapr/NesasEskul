@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const Navabar = () => {
+const Navbar = () => {
   const [isClick, setisClick] = useState(false);
 
   const toggleNavbar = () => {
@@ -12,29 +12,29 @@ const Navabar = () => {
 
   return (
     <>
-      <nav className="bg-transparent">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="bg-transparent pt-5">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="logo">
                 <Image src="/logo.png" alt="logo" height={100} width={110} />
               </div>
             </div>
-            <div className="hidden md:block bg-black rounded-full w-">
-              <div className="ml-4 flex items-center space-x-4">
-                <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+            <div className="hidden md:block backdrop-blur-2xl bg-[#ffffff2a] rounded-full px-8 py-4">
+              <div className="space-x-8">
+                <Link href="/" className="text-white">
                   Beranda
                 </Link>
-                <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                <Link href="/galeri" className="text-white">
                   Galeri
                 </Link>
-                <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                <Link href="/pengumuman" className="text-white">
                   Pengumuman
                 </Link>
-                <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                <Link href="/profil" className="text-white">
                   Profil
                 </Link>
-                <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                <Link href="/jadwal" className="text-white">
                   Jadwal
                 </Link>
               </div>
@@ -67,16 +67,22 @@ const Navabar = () => {
           </div>
         </div>
         {isClick && (
-          <div className="md:hidden">
+          <div className="md:hidden bg-[#ffffff5e] rounded-xl">
             <div className="px-2 pt-2pb-3 space-y-1 sm:px-3">
               <Link href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
-                Home
+                Beranda
               </Link>
-              <Link href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
-                About
+              <Link href="/galeri" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Galeri
               </Link>
-              <Link href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
-                Projek
+              <Link href="/pengumuman" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Pengumuman
+              </Link>
+              <Link href="/profil" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Profil
+              </Link>
+              <Link href="/jadwal" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Jadwal
               </Link>
               <div className="flex justify-end">
                 <button className="bg-white text-black font-bold py-1 px-3 rounded-full">
@@ -97,4 +103,4 @@ const Navabar = () => {
   );
 };
 
-export default Navabar;
+export default Navbar;
