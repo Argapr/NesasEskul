@@ -57,12 +57,9 @@ const Galeri = () => {
       return galeri.name.toLowerCase().includes(searchTerm.toLowerCase());
     } else {
       // Jika kategori telah dipilih, tampilkan hanya data dengan kategori yang sesuai
-      return galeri.kategori === selectedCategory &&
-             galeri.name.toLowerCase().includes(searchTerm.toLowerCase());
+      return galeri.kategori === selectedCategory && galeri.name.toLowerCase().includes(searchTerm.toLowerCase());
     }
   });
-  
-  
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -117,7 +114,28 @@ const Galeri = () => {
           <button className={`md:m-5 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === "Kesenian" ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`} onClick={() => handleCategoryChange("Kesenian")}>
             <p className="text-xs md:text-lg">Kesenian</p>
           </button>
-          
+          <button className={`md:m-5 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === "olahraga" ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`} onClick={() => handleCategoryChange("olahraga")}>
+            <p className="text-xs md:text-lg">Olahraga</p>
+          </button>
+          <button className={`md:m-5 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === "PKK" ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`} onClick={() => handleCategoryChange("PKK")}>
+            <p className="text-xs md:text-lg">PKK</p>
+          </button>
+          <button
+            className={`md:m-5 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === "organisasi" ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`}
+            onClick={() => handleCategoryChange("organisasi")}
+          >
+            <p className="text-xs md:text-lg">Organisasi</p>
+          </button>
+          <button
+            className={`md:m-5 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === "bela diri" ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`}
+            onClick={() => handleCategoryChange("bela diri")}
+          >
+            <p className="text-xs md:text-lg">Bela diri</p>
+          </button>
+          <button className={`md:m-5 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === "bahasa" ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`} onClick={() => handleCategoryChange("bahasa")}>
+            <p className="text-xs md:text-lg">Bahasa</p>
+          </button>
+
           {/* Tambahkan tombol kategori lainnya sesuai format yang sama */}
         </div>
         <div className="mx-2 md:mx-10 grid md:grid-cols-4 grid-cols-1 gap-4 mt-5">

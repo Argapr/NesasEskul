@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "../../components/navbar/navbarforum.js";
 import { useRouter } from "next/router";
+import { firestore } from "@/firebase/firebaseConfig.js"; // Import the firestore instance
 
 const Question = () => {
   const [selectedEskul, setSelectedEskul] = useState("Null");
@@ -47,10 +48,6 @@ const Question = () => {
     setShowOverlay(false); // Menyembunyikan overlay ketika tombol close di dalam overlay diklik
   };
 
-  const handleFormTypeChange = (type) => {
-    setFormType(type); // Mengubah jenis form yang ditampilkan
-  };
-
   const [formType, setFormType] = useState("pertanyaan"); // State untuk menentukan jenis form yang ditampilkan
   const handleImageInputChange = (event) => {
     const file = event.target.files[0]; // Mengambil file gambar pertama dari input
@@ -67,22 +64,29 @@ const Question = () => {
     }
   };
 
-  const handleQuestionSubmit = (event) => {
+  const handleQuestionSubmit = async (event) => {
     event.preventDefault(); // Mencegah perilaku default form submission
     const questionInput = document.getElementById("question"); // Ambil elemen input pertanyaan
     const newQuestionText = questionInput.value.trim(); // Ambil teks pertanyaan dari input
 
     if (newQuestionText !== "") {
-      const newQuestion = {
-        id: questions.length + 1,
-        text: newQuestionText,
-      };
+      try {
+        // Add question to Firestore
+        await firestore.collection("questions").add({
+          text: newQuestionText,
+          eskul: selectedEskul,
+          createdAt: new Date(),
+        });
 
-      setQuestions([...questions, newQuestion]); // Tambahkan pertanyaan baru ke dalam daftar pertanyaan
-      questionInput.value = ""; // Kosongkan input setelah pertanyaan ditambahkan
+        // Fetch updated questions and update state
+        const updatedQuestionsSnapshot = await firestore.collection("questions").where("eskul", "==", selectedEskul).get();
+        const updatedQuestions = updatedQuestionsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setQuestions(updatedQuestions);
 
-      // Atau, jika Anda ingin mereset form setelah pengiriman
-      // event.target.reset();
+        questionInput.value = ""; // Kosongkan input setelah pertanyaan ditambahkan
+      } catch (error) {
+        console.error("Error adding question: ", error);
+      }
     }
   };
 

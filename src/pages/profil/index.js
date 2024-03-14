@@ -89,7 +89,7 @@ const Profil = () => {
             </div>
           </div>
         </div>
-        <div className="mt-[2rem]">
+        <div className="mt-[2rem] mx-5">
           <div className="grid md:grid-cols-4 gap-4">
             {filteredData.map((profil) => (
               <div key={profil.id}>

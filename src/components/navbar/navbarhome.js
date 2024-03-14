@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-transparent pt-5">
+      <nav className="bg-transparent md:pt-5 px-3">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -68,7 +68,7 @@ const Navbar = () => {
         </div>
         {isClick && (
           <div className="md:hidden bg-[#ffffff5e] rounded-xl">
-            <div className="px-2 pt-2pb-3 space-y-1 sm:px-3">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
                 Beranda
               </Link>
