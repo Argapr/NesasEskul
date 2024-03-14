@@ -22,7 +22,7 @@ const Pengumuman = () => {
   const [username, setUsername] = useState("");
   const [newComment, setNewComment] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const categories = ["keagamaan", "kesenian", "teknologi", "bela-diri", "organisasi", "pkk", "olahraga", "bahasa"];
+  const categories = ["keagamaan", "kesenian", "teknologi", "bahasa", "bela-diri", "organisasi", "pkk", "olahraga"];
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category); // Tangani perubahan kategori yang dipilih
@@ -141,6 +141,7 @@ const Pengumuman = () => {
                   return pengumuman.kategori === selectedCategory;
                 }
               })
+              .filter((galeri) => galeri.name.toLowerCase().includes(searchTerm.toLowerCase()))
               .map((pengumuman) => (
                 <div key={pengumuman.id}>
                   <div className="h-auto bg-[#f0eded] p-5 rounded-xl mt-2">

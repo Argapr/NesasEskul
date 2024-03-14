@@ -75,7 +75,7 @@ const Galeri = () => {
           />
         </div>
         <p className="ms-12 mt-3 font-semibold text-[#ffffff] text-sm md:text-xl">Kategori</p>
-        <div className="flex ms-10 flex-wrap mt-0 md:mt-0 ps-4 md:ps-0">
+        <div className="flex ms-10 flex-wrap mt-0 md:mt-0">
           {categories.map((category) => (
             <button
               key={category}
@@ -97,6 +97,7 @@ const Galeri = () => {
                 return galeri.category === selectedCategory;
               }
             })
+            .filter((galeri) => galeri.name.toLowerCase().includes(searchTerm.toLowerCase()))
             // .filter((galeri) => galeri.name.toLowerCase().includes(searchTerm.toLowerCase()))
             .map((galeri) => (
               <div key={galeri.id}>
