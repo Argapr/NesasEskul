@@ -262,7 +262,7 @@ const Question = () => {
             <button className=" rounded-full mx-1 h-7 mt-2 w-[5rem] border border-[#fff]  text-[#ffff]" onClick={() => handleCategoryClick("Kesenian")}>
               Kesenian
             </button>
-            <button className=" rounded-full mx-1 h-7 w-[3.5rem] border border-[#fff]  text-[#ffff]" onClick={() => handleCategoryClick("PKK")}>
+            <button className=" rounded-full mx-1 mt-3 h-7 w-[3.5rem] border border-[#fff]  text-[#ffff]" onClick={() => handleCategoryClick("PKK")}>
               PKK
             </button>
             <button className=" rounded-full mx-1 h-7 w-[6rem] border border-[#fff]  text-[#ffff]" onClick={() => handleCategoryClick("Organisasi")}>

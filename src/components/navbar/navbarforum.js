@@ -1,86 +1,45 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { auth } from "../../firebase/firebaseConfig";
 
 const Navbar = () => {
-  const router = useRouter();
-  const [user, setUser] = useState(null);
-  const [backgroundColor, setBackgroundColor] = useState("");
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-        // Generate random background color
-        const randomColor = getRandomColor();
-        setBackgroundColor(randomColor);
-      } else {
-        setUser(null);
-        setBackgroundColor("");
-      }
-    });
-
-    return unsubscribe;
-  }, []);
-
-  // Function to generate random color
-  const getRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      router.push("/login");
-    } catch (error) {
-      console.error("Error logging out: ", error);
-    }
-  };
-
   return (
-    <nav className="flex items-center justify-between bg-[#2f2d2d] bg-opacity-50 backdrop-blur-lg rounded-full mx-[10rem] px-6 py-3 h-20 mt-5 z-50">
-      <div className="logo">
+    <nav className="h-[5rem] bg-[#fff] flex justify-between items-center px-[10rem] drop-shadow-lg">
+      <div className="flex items-center">
         <Link href="/">
-          <Image src="/logo.png" alt="logo" height={100} width={130} />
+          <Image src="/IMG/logo-black.png" alt="" height={50} width={100} />
         </Link>
-      </div>
-      <ul className="flex text-white text-lg">
-        <li className={router.pathname === "/forum" ? "active" : ""}>
-          <Link href="/forum">Forum</Link>
-        </li>
-        <li className="mx-2"></li>
-        <li className={router.pathname === "/forum/pengguna" ? "active" : ""}>
-          <Link href="/forum/pengguna">Pengguna</Link>
-        </li>
-      </ul>
-      <div className="btn-forum flex">
-        {user ? (
-          <div>
-            {/* Display username if user is logged in */}
-            <div className="rounded-full h-10 w-10 flex justify-center items-center mr-4" style={{ backgroundColor }}>
-              <p className="text-white font-bold text-lg">{user.displayName.charAt(0)}</p>
-            </div>
-          </div>
-        ) : (
-          <button className="bg-transparent border border-[#fff] text-[#fff] font-bold py-2 px-4 rounded-full">
-            <Link href="/login">Login</Link>
+        <div className="relative">
+          <input type="text" placeholder="cari eskul" className="bg-[#f3eeee85] rounded-lg px-3 py-2 focus:outline-none ms-10 placeholder:text-[#a19e9e] w-[15rem]" />
+          <button style={{ position: "absolute", top: "50%", right: "5px", transform: "translateY(-50%)" }} className="h-8 w-8 rounded-lg bg-[#fff] flex items-center flex-col justify-center">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <path
+                  d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                  stroke="#000000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>{" "}
+              </g>
+            </svg>
           </button>
-        )}
+        </div>
       </div>
-      <style jsx>{`
-        .active {
-          font-weight: bold;
-        }
-      `}</style>
+      <div className="flex">
+        <p className="text-xl font-semibold">Login</p>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>{" "}
+          </g>
+        </svg>
+      </div>
     </nav>
   );
 };
-
 export default Navbar;

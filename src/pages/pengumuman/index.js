@@ -113,9 +113,9 @@ const Pengumuman = () => {
       <header>
         <Navbar />
       </header>
-      <main>
-        <div className="md:mx-[5rem] mx-2 grid md:grid-cols-5 gap-4 md:mt-[6rem] mt-[2rem]">
-          <div className="mx-5 rounded-lg md:h-[32rem] h-[10rem] col-span-2 mt-6">
+      <main className="mx-[8rem]">
+        <div className="md:mx-[5rem] mx-2 grid md:grid-cols-4 gap-4 md:mt-[6rem] mt-[2rem]">
+          <div className="mx-5 rounded-lg md:h-[32rem] h-[10rem] mt-6">
             <input type="text" placeholder="cari eskul" className="px-2 py-2 w-full rounded-lg focus:outline-none border border-[#fff] bg-transparent focus:text-[#fff] text-[#ffffff]" value={searchTerm} onChange={handleSearchChange} />
             <p className="mt-3 font-semibold text-[#ffffff] text-sm md:text-xl">Kategori</p>
             <div className="mx-2">

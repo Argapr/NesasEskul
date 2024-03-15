@@ -1,270 +1,317 @@
-import { useState, useEffect } from "react";
 import Image from "next/image";
-import Navbar from "../../components/navbar/navbarforum.js";
-import { useRouter } from "next/router";
+import Link from "next/link";
+import Navbar from "@/components/navbar/navbarforum";
+import { useState } from "react";
 
-const ForumHome = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Populer");
-  const router = useRouter();
+const Forum = () => {
+  const [visibleDropdown, setVisibleDropdown] = useState(null);
+  const [selectedEskul, setSelectedEskul] = useState(""); // State baru untuk menyimpan nama eskul yang sedang ditampilkan
 
-  useEffect(() => {
-    const { category } = router.query;
-    if (category) {
-      setSelectedCategory(category);
-    }
-  }, [router.query]);
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    router.push(`/forum?category=${category}`);
-  };
-
-  const handleEskulClick = (eskul) => {
-    router.push(`/forum/obrolan?eskul=${eskul}`);
+  const toggleVisibility = (dropdown, eskul) => { // Menerima parameter baru 'eskul'
+    setVisibleDropdown((prev) => (prev === dropdown ? null : dropdown));
+    setSelectedEskul(eskul); // Perbarui state 'selectedEskul' dengan nama eskul yang diklik
   };
 
   return (
     <>
-      <header className="h-[30rem] grid relative overflow-hidden">
-        <Navbar />
-        <div className="absolute inset-0">
-          <Image src="/bg-forum.jpg" alt="" layout="fill" objectFit="cover" />
-        </div>
-        <p className="text-[#fff] font-semibold text-5xl text-center z-10 mt-[10rem]">Selamat Datang di Forum NesasEskul</p>
-        <div className="flex justify-center">
-          <div className="relative">
-            <input type="text" placeholder="Cari Forum  " className="w-[50rem] px-4 py-4 rounded-full shadow-xl focus:outline-none" />
-            <button className="absolute inset-y-2 right-2 flex items-center px-5 py-4 bg-[#9A9A9A] rounded-full h-[2.5rem]">
-              <p className="text-[#fff]">Cari</p>
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <main className="mx-[20rem]">
-        <div className="grid grid-cols-3 gap-3 mt-10 relative">
-          <div className="col-span-2 ">
-            <div className="judul h-[5rem] bg-[#fff] shadow-xl flex items-center ps-5 rounded-t-lg">
-              {(selectedCategory === "Populer" && <Image src="/popularity.png" alt="" height={50} width={50} />) ||
-                (selectedCategory === "Keagamaan" && <Image src="/keagamaan.png" alt="" height={50} width={50} />) ||
-                (selectedCategory === "Kesenian" && <Image src="/kesenian.png" alt="" height={50} width={50} />) ||
-                (selectedCategory === "PKK" && <Image src="/pkk.png" alt="" height={50} width={50} />) ||
-                (selectedCategory === "Olahraga" && <Image src="/olahraga.png" alt="" height={50} width={50} />) ||
-                (selectedCategory === "Organisasi" && <Image src="/organisasi.png" alt="" height={50} width={50} />) ||
-                (selectedCategory === "Bela Diri" && <Image src="/bela-diri.png" alt="" height={50} width={50} />) ||
-                (selectedCategory === "Bahasa" && <Image src="/bahasa.png" alt="" height={50} width={50} />) ||
-                (selectedCategory === "Teknologi" && <Image src="/teknologi.png" alt="" height={50} width={50} />)}
-              <p className="text-xl font-medium ms-3">{selectedCategory}</p>
+      <Navbar />
+      <main className="px-[10rem]">
+        <div className="grid grid-cols-3 gap-3 mt-12">
+          <div className="col-span-2">
+            <div className="bg-[#fff] drop-shadow-lg rounded-md p-5 h-[5rem]">
+              <p className="judul font-semibold text-2xl">{selectedEskul}</p>
             </div>
-            <div className=" bg-[#fff] mt-5 shadow-xl pt-2">
-              {selectedCategory === "Populer" && (
-                <div className="h-12 mx-2 flex justify-between items-center">
-                  <p className="text-black">hello world</p>
-                </div>
-              )}
-
-              {selectedCategory === "Keagamaan" && (
-                <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Nasyid")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Nasyid</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tahfidz")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tahfidz</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("BTQ")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">BTQ</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Kaligrafi")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Kaligrafi</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E4C9A9] border-l-4 border-[#EB9F44] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Qiroat")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Qiroat</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Marawis")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Marawis</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-3"></div>
-                </div>
-              )}
-
-              {selectedCategory === "Teknologi" && (
-                <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("HOVER")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">HOVER</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("IT Club")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">IT Club</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("PLH")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">PLH</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-3"></div>
-                </div>
-              )}
-
-              {selectedCategory === "Kesenian" && (
-                <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Seni Tari")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Seni Tari</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Karawitan")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Karawitan</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Paduan Suara")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Paduan Suara</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Marching Band")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Marching Band</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-3"></div>
-                </div>
-              )}
-
-              {selectedCategory === "PKK" && (
-                <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tata Rias")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tata Rias</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tata Boga")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tata Boga</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tata Busana")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tata Busana</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-3"></div>
-                </div>
-              )}
-
-              {selectedCategory === "Organisasi" && (
-                <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("PMR")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">PMR</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Paskibra")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Paskibra</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Pramuka")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Pramuka</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("PIK-R")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">PIK-R</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-3"></div>
-                </div>
-              )}
-
-              {selectedCategory === "Bahasa" && (
-                <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("English Club")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">English Club</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Nihongo Kai")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Nihongo Kai</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Literasi")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Literasi</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-3"></div>
-                </div>
-              )}
-
-              {selectedCategory === "Olahraga" && (
-                <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Volley Ball")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Volley Ball</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Basket Ball")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Basket Ball</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Bulu Tangkis")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Bulu Tangkis</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9C5E4] border-l-4 border-[#4E98EA] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Hand Ball")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Hand Ball</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E4C9A9] border-l-4 border-[#EB9F44] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Futsal")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Futsal</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-3"></div>
-                </div>
-              )}
-
-              {selectedCategory === "Bela Diri" && (
-                <div className="mx-5">
-                  <div className="h-[5rem] bg-[#E4A9A9] border-l-4 border-[#EA4444] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Tarung Derajat")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Tarung Derajat</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#E3E4A9] border-l-4 border-[#D9DD00] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Pencat Silat")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Pencak Silat</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-[5rem] bg-[#A9E4B3] border-l-4 border-[#5AEE73] rounded-xl mt-3 cursor-pointer" onClick={() => handleEskulClick("Karate")}>
-                    <h1 className="font-bold text-[#000] ms-5 pt-3 text-2xl">Karate</h1>
-                    <p className="text-[#292929] font-light ms-5">Ekstrakulikuler</p>
-                  </div>
-                  <div className="h-3"></div>
-                </div>
-              )}
-            </div>
+            <div className="bg-[#fff] mt-3 drop-shadow-lg rounded-md p-5 h-[15rem]"></div>
           </div>
-          <div className="kategori">
-            <p className="text-[#fff] font-semibold text-xl">Kategori</p>
-            <button className={`border ${selectedCategory === "Populer" ? "bg-[#fff] text-[#000]" : "border-[#fff]-100 bg-transparent text-[#fff]"} h-7 w-[5rem] rounded-full mx-1 mt-3`} onClick={() => handleCategoryClick("Populer")}>
-              Populer
-            </button>
-            <button className={`border ${selectedCategory === "Keagamaan" ? "bg-[#fff] text-[#000]" : "border-[#fff]-100 bg-transparent text-[#fff]"} h-7 w-[6rem] rounded-full mx-1`} onClick={() => handleCategoryClick("Keagamaan")}>
-              Keagamaan
-            </button>
-            <button className={`border ${selectedCategory === "Teknologi" ? "bg-[#fff] text-[#000]" : "border-[#fff]-100 bg-transparent text-[#fff]"} h-7 w-[6rem] rounded-full mx-1`} onClick={() => handleCategoryClick("Teknologi")}>
-              Teknologi
-            </button>
-            <button className={`border ${selectedCategory === "Kesenian" ? "bg-[#fff] text-[#000]" : "border-[#fff]-100 bg-transparent text-[#fff]"} h-7 w-[5rem] rounded-full mx-1 mt-2`} onClick={() => handleCategoryClick("Kesenian")}>
-              Kesenian
-            </button>
-            <button className={`border ${selectedCategory === "PKK" ? "bg-[#fff] text-[#000]" : "border-[#fff]-100 bg-transparent text-[#fff]"} h-7 w-[3.5rem] rounded-full mx-1`} onClick={() => handleCategoryClick("PKK")}>
-              PKK
-            </button>
-            <button className={`border ${selectedCategory === "Organisasi" ? "bg-[#fff] text-[#000]" : "border-[#fff]-100 bg-transparent text-[#fff]"} h-7 w-[6rem] rounded-full mx-1`} onClick={() => handleCategoryClick("Organisasi")}>
-              Organisasi
-            </button>
-            <button className={`border ${selectedCategory === "Bahasa" ? "bg-[#fff] text-[#000]" : "border-[#fff]-100 bg-transparent text-[#fff]"} h-7 w-[4rem] rounded-full mx-1 mt-2`} onClick={() => handleCategoryClick("Bahasa")}>
-              Bahasa
-            </button>
-            <button className={`border ${selectedCategory === "Olahraga" ? "bg-[#fff] text-[#000]" : "border-[#fff]-100 bg-transparent text-[#fff]"} h-7 w-[5rem] rounded-full mx-1`} onClick={() => handleCategoryClick("Olahraga")}>
-              Olahraga
-            </button>
-            <button className={`border ${selectedCategory === "Bela Diri" ? "bg-[#fff] text-[#000]" : "border-[#fff]-100 bg-transparent text-[#fff]"} h-7 w-[5rem] rounded-full mx-1`} onClick={() => handleCategoryClick("Bela Diri")}>
-              Bela diri
-            </button>
+          <div className="bg-[#fff] rounded-md p-2 drop-shadow-lg">
+            <p className="text-center font-mono text-2xl">Kategori</p>
+            <div className="m-4">
+              <div className="h-10 border-[#e4dfdf] border rounded-md flex justify-start items-center">
+                <Image src="/popularity.png" alt="" height={30} width={30} className="m-2" />
+                <p className="text-lg font-normal">Populer</p>
+              </div>
+              {/* S: Keagamaan */}
+              <div>
+                <div className="h-10 border-[#e4dfdf] border rounded-md flex justify-between items-center mt-2">
+                  <div className="flex items-center">
+                    <Image src="/keagamaan.png" alt="" height={30} width={30} className="m-2" />
+                    <p className="text-lg font-normal">Keagamaan</p>
+                  </div>
+                  <button onClick={() => toggleVisibility("Keagamaan")} className="me-3">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M12 17L6 9L18 9L12 17Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+                {visibleDropdown === "Keagamaan" && (
+                  <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center" onClick={() => toggleVisibility("Keagamaan", "Nasyid")}>
+                      <p className="text-sm ms-3">Nasyid</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Tahfidz</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">BTQ</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Kaligrafi</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Qiroat</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Marawis</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* E: keagamaan */}
+
+              {/* S: Teknologi */}
+              <div>
+                <div className="h-10 border-[#e4dfdf] border rounded-md flex justify-between items-center mt-2">
+                  <div className="flex items-center">
+                    <Image src="/teknologi.png" alt="" height={30} width={30} className="m-2" />
+                    <p className="text-lg font-normal">Teknologi</p>
+                  </div>
+                  <button onClick={() => toggleVisibility("teknologi")} className="me-3">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M12 17L6 9L18 9L12 17Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+                {visibleDropdown === "teknologi" && (
+                  <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">HOVER</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">PLH</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">IT CLUB</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* E: Teknologi */}
+
+              {/* S: PKK */}
+              <div>
+                <div className="h-10 border-[#e4dfdf] border rounded-md flex justify-between items-center mt-2">
+                  <div className="flex items-center">
+                    <Image src="/pkk.png" alt="" height={30} width={30} className="m-2" />
+                    <p className="text-lg font-normal">PKK</p>
+                  </div>
+                  <button onClick={() => toggleVisibility("pkk")} className="me-3">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M12 17L6 9L18 9L12 17Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+                {visibleDropdown === "pkk" && (
+                  <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Tata Rias</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Tata Boga</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Tata Busana</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* E: PKK */}
+
+              {/* S: Organisasi */}
+              <div>
+                <div className="h-10 border-[#e4dfdf] border rounded-md flex justify-between items-center mt-2">
+                  <div className="flex items-center">
+                    <Image src="/organisasi.png" alt="" height={30} width={30} className="m-2" />
+                    <p className="text-lg font-normal">Organisasi</p>
+                  </div>
+                  <button onClick={() => toggleVisibility("organisasi")} className="me-3">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M12 17L6 9L18 9L12 17Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+                {visibleDropdown === "organisasi" && (
+                  <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">PMR</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Paskibra</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Pramuka</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* E: Organisasi */}
+
+              {/* S: Olahraga */}
+              <div>
+                <div className="h-10 border-[#e4dfdf] border rounded-md flex justify-between items-center mt-2">
+                  <div className="flex items-center">
+                    <Image src="/olahraga.png" alt="" height={30} width={30} className="m-2" />
+                    <p className="text-lg font-normal">Olahraga</p>
+                  </div>
+                  <button onClick={() => toggleVisibility("olahraga")} className="me-3">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M12 17L6 9L18 9L12 17Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+                {visibleDropdown === "olahraga" && (
+                  <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Volley Ball</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Basket Ball</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Bulu Tangkis</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Hand Ball</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Futsal</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* E: Olahraga */}
+
+              {/* S: Kesenian */}
+              <div>
+                <div className="h-10 border-[#e4dfdf] border rounded-md flex justify-between items-center mt-2">
+                  <div className="flex items-center">
+                    <Image src="/kesenian.png" alt="" height={30} width={30} className="m-2" />
+                    <p className="text-lg font-normal">Kesenian</p>
+                  </div>
+                  <button onClick={() => toggleVisibility("kesenian")} className="me-3">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M12 17L6 9L18 9L12 17Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+                {visibleDropdown === "kesenian" && (
+                  <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Seni Tari</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Karawitan</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Paduan Suara</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Marching Band</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* E: Kesenian */}
+
+              {/* S: Bela Diri */}
+              <div>
+                <div className="h-10 border-[#e4dfdf] border rounded-md flex justify-between items-center mt-2">
+                  <div className="flex items-center">
+                    <Image src="/bela-diri.png" alt="" height={30} width={30} className="m-2" />
+                    <p className="text-lg font-normal">Bela Diri</p>
+                  </div>
+                  <button onClick={() => toggleVisibility("bela-diri")} className="me-3">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M12 17L6 9L18 9L12 17Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+                {visibleDropdown === "bela-diri" && (
+                  <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Tarung Derajat</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Pencak Silat</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Karate</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* E: Bela Diri */}
+
+              {/* S: Bahasa */}
+              <div>
+                <div className="h-10 border-[#e4dfdf] border rounded-md flex justify-between items-center mt-2">
+                  <div className="flex items-center">
+                    <Image src="/bahasa.png" alt="" height={30} width={30} className="m-2" />
+                    <p className="text-lg font-normal">Bahasa</p>
+                  </div>
+                  <button onClick={() => toggleVisibility("bahasa")} className="me-3">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M12 17L6 9L18 9L12 17Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+                {visibleDropdown === "bahasa" && (
+                  <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">English Club</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Nihongo Kai</p>
+                    </div>
+                    <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
+                      <p className="text-sm ms-3">Literasi</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* E: Bahasa */}
+            </div>
           </div>
         </div>
       </main>
@@ -272,4 +319,4 @@ const ForumHome = () => {
   );
 };
 
-export default ForumHome;
+export default Forum;
