@@ -22,7 +22,7 @@ const Pengumuman = () => {
   const [username, setUsername] = useState("");
   const [newComment, setNewComment] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const categories = ["keagamaan", "kesenian", "teknologi", "bahasa", "bela-diri", "organisasi", "pkk", "olahraga"];
+  const categories = ["keagamaan", "kesenian", "teknologi", "pkk", "bahasa", "bela-diri", "organisasi", "olahraga"];
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category); // Tangani perubahan kategori yang dipilih
