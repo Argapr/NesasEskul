@@ -45,7 +45,7 @@ const generateCalendar = (month, year) => {
   return calendar;
 };
 
-const jadwal = () => {
+const Jadwal = () => {
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
 
@@ -139,4 +139,4 @@ const jadwal = () => {
   );
 };
 
-export default jadwal;
+export default Jadwal;
