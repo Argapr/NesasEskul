@@ -49,7 +49,7 @@ const Forum = () => {
                 </div>
                 {visibleDropdown === "Keagamaan" && (
                   <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
-                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center" onClick={() => toggleVisibility("Keagamaan", "Nasyid")}>
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center" >
                       <p className="text-sm ms-3">Nasyid</p>
                     </div>
                     <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">

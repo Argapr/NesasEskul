@@ -101,7 +101,7 @@ const Profil = () => {
                       <p className="text-sm font-light">Ekstrakulikuler</p>
                     </div>
                   </div>
-                  <button className="bg-[#2F2D2D] text-[#fff] font-normal text-lg rounded-full px-2 py-0 absolute bottom-2 right-2">Detail</button>
+                  <button className="bg-[#90e6f0] text-[#fff] font-normal text-lg rounded-lg px-2 py-0 absolute bottom-2 right-2">Detail</button>
                 </div>
               </div>
             ))}

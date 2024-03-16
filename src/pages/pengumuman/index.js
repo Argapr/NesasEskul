@@ -113,16 +113,36 @@ const Pengumuman = () => {
       <header>
         <Navbar />
       </header>
-      <main className="mx-[8rem]">
-        <div className="md:mx-[5rem] mx-2 grid md:grid-cols-4 gap-4 md:mt-[6rem] mt-[2rem]">
-          <div className="mx-5 rounded-lg md:h-[32rem] h-[10rem] mt-6">
-            <input type="text" placeholder="cari eskul" className="px-2 py-2 w-full rounded-lg focus:outline-none border border-[#fff] bg-transparent focus:text-[#fff] text-[#ffffff]" value={searchTerm} onChange={handleSearchChange} />
-            <p className="mt-3 font-semibold text-[#ffffff] text-sm md:text-xl">Kategori</p>
+      <main className="md:mx-[8rem]">
+        <div className="md:mx-[5rem] mx-2 grid md:grid-cols-3 grid-cols-2 gap-4 md:mt-[4rem] mt-[2rem] bg-[#fff] md:p-5 p-2 rounded-lg">
+          <div className=" rounded-lg md:h-[32rem] bg-[#ebe3e3b9] h-[13rem] p-5 mt-2 col-span-2 md:col-span-1">
+            <div className="relative">
+              <input type="text" placeholder="cari eskul" className="px-2 py-2 w-full rounded-lg focus:outline-none border border-[#000] bg-transparent focus:text-[#363535] text-[#363535]" value={searchTerm} onChange={handleSearchChange} />
+              <button style={{ position: "absolute", top: "50%", right: "5px", transform: "translateY(-50%)" }} className="h-8 w-8 rounded-lg bg-[#fff] flex items-center flex-col justify-center">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    {" "}
+                    <path
+                      d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>{" "}
+                  </g>
+                </svg>
+              </button>
+            </div>
+            <p className="mt-3 font-semibold text-[#000000] text-sm md:text-xl">Kategori</p>
             <div className="mx-2">
               {categories.map((category) => (
                 <button
                   key={category}
-                  className={`md:m-1 m-1 border border-[#fff] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] ${selectedCategory === category ? "bg-[#fff] text-[#000]" : "text-[#fff]"}`}
+                  className={`md:m-1 m-1 border border-[#000] p-2 rounded-lg hover:bg-[#fff] hover:text-[#000] hover:drop-shadow-lg hover:border-[#fff] ${
+                    selectedCategory === category ? "bg-[#fff] text-[#000] drop-shadow-lg" : "text-[#000]"
+                  }`}
                   onClick={() => handleCategoryChange(category)}
                 >
                   <p className="text-xs md:text-xs">{category.charAt(0).toUpperCase() + category.slice(1)}</p>
@@ -130,7 +150,7 @@ const Pengumuman = () => {
               ))}
             </div>
           </div>
-          <div className="col-span-2 md:mx-0 mx-1 mt-3">
+          <div className="col-span-2 md:mx-0 mx-1">
             {pengumumanData
               .filter((pengumuman) => {
                 // Jika tidak ada kategori yang dipilih, tampilkan semua data
@@ -144,12 +164,12 @@ const Pengumuman = () => {
               .filter((galeri) => galeri.name.toLowerCase().includes(searchTerm.toLowerCase()))
               .map((pengumuman) => (
                 <div key={pengumuman.id}>
-                  <div className="h-auto bg-[#f0eded] p-5 rounded-xl mt-2">
+                  <div className="h-auto bg-[#ebe3e3b9] p-5 rounded-xl mt-2">
                     <div className="h-[12rem] w-full bg-[#00000083] flex justify-center items-center">
                       {pengumuman.image && <img src={pengumuman.image} alt={pengumuman.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "cover" }} />}
                     </div>
                     <p className="mt-2 font-bold text-3xl">{pengumuman.name}</p>
-                    <p className="mt-2">{pengumuman.pengumuman.length > 100 ? pengumuman.pengumuman.substring(0, 100) + "..." : pengumuman.pengumuman}</p>
+                    <p className="mt-2">{pengumuman.pengumuman.length > 100 ? pengumuman.pengumuman.substring(0, 110) + "..." : pengumuman.pengumuman}</p>
                     <div className="flex items-center mt-5">
                       <div className="h-7 w-[7rem] bg-[#e9e1e1a1] rounded-xl flex items-center justify-center">
                         <div className="h-5 w-5 bg-white rounded-full items-center flex justify-center">
@@ -181,7 +201,7 @@ const Pengumuman = () => {
                           <input type="text" placeholder="Masukkan nama" value={username} onChange={(e) => setUsername(e.target.value)} className="py-2 px-4 focus:outline-none rounded-lg mt-2" />
                           <input type="text" placeholder="Berikan komentar" value={newComment} onChange={(e) => setNewComment(e.target.value)} className="py-2 px-4 focus:outline-none rounded-lg mt-2" />
                         </div>
-                        <button onClick={addComment} className="py-2 px-4 bg-blue-500 text-white rounded-lg mt-2 w-full">
+                        <button onClick={addComment} className="py-2 px-4 bg-[#90e6f0] text-white rounded-lg mt-2 w-full">
                           Kirim
                         </button>
                       </div>
@@ -192,12 +212,13 @@ const Pengumuman = () => {
           </div>
         </div>
         {showScrollButton && (
-          <div className="z-50 fixed bottom-10 right-5 md:right-10 bg-[#fff] px-2 py-2 md:px-4 md:py-4 rounded-full shadow cursor-pointer drop-shadow-2xl" onClick={scrollToTop}>
+          <div className="z-50 fixed bottom-10 right-5 md:right-10 bg-[#90e6f0] drop-shadow-lg px-2 py-2 md:px-4 md:py-4 rounded-full shadow cursor-pointer" onClick={scrollToTop}>
             <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none" className="md:w-7 w-6">
-              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-              <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
               <g id="SVGRepo_iconCarrier">
-                <path stroke="#000000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 18V2m0 0l7 7m-7-7L3 9"></path>
+                {" "}
+                <path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 18V2m0 0l7 7m-7-7L3 9"></path>{" "}
               </g>
             </svg>
           </div>

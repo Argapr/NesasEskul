@@ -76,61 +76,59 @@ const Jadwal = () => {
       <header>
         <Navbar />
       </header>
-      <main>
-        <div className="grid md:grid-cols-3 grid-cols-1 gap-10 mx-[6rem] mt-[7rem]">
-          <div className="col-span-2 h-[30rem] flex justify-center items-center rounded-xl bg-[#908D8D]">
-            <div className="w-[42rem] h-[28rem] rounded-lg">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-[#fff]">
-                  {new Date(year, month).toLocaleDateString("en-US", {
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </h2>
-                <div className="flex">
-                  <button className="mr-4" onClick={prevMonth}>
-                    <Image src="/back1.png" alt="" height={20} width={20} />
-                  </button>
-                  <button className="ml-4" onClick={nextMonth}>
-                    <Image src="/next.png" alt="" height={20} width={20} />
-                  </button>
-                </div>
+      <main className="pb-5">
+        <div className="grid md:grid-cols-3 grid-cols-2 gap-10 md:mx-[6rem] mx-1 md:mt-[7rem] mt-8">
+          <div className="col-span-2 justify-center items-center rounded-xl bg-[#ffffff] md:p-5 p-3 drop-shadow-lg">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-[#632222]">
+                {new Date(year, month).toLocaleDateString("en-US", {
+                  month: "long",
+                  year: "numeric",
+                })}
+              </h2>
+              <div className="flex">
+                <button className="mr-4" onClick={prevMonth}>
+                  <Image src="/IMG/back.png" alt="" height={20} width={20} />
+                </button>
+                <button className="ml-4" onClick={nextMonth}>
+                  <Image src="/IMG/next.png" alt="" height={20} width={20} />
+                </button>
               </div>
-              <table className="w-full h-[25rem] border-collapse bg-[#fff] mt-2">
-                <thead>
-                  <tr>
-                    {dayNames.map((dayName, index) => (
-                      <th key={index} className="border border-[#D9D3D3] p-4 text-center bg-[#E7E7E7]">
-                        {dayName}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {calendar.map((day, index) => {
-                    if (index % 7 === 0) {
-                      return (
-                        <tr key={index}>
-                          {[...Array(7).keys()].map((i) => {
-                            const currentIndex = index + i;
-                            return (
-                              <td key={i} className={`border border-[#D9D3D3] relative ${calendar[currentIndex].isInCurrentMonth ? "font-bold" : "text-gray-300"}`}>
-                                {calendar[currentIndex].day && <span className="absolute top-1 right-2 p-1">{calendar[currentIndex].day}</span>}
-                              </td>
-                            );
-                          })}
-                        </tr>
-                      );
-                    }
-                    return null;
-                  })}
-                </tbody>
-              </table>
             </div>
+            <table className="w-full h-[25rem] border-collapse bg-[#fff] mt-2">
+              <thead>
+                <tr>
+                  {dayNames.map((dayName, index) => (
+                    <th key={index} className="border border-[#D9D3D3] md:p-4 p-0 text-sm md:text-lg text-center bg-[#E7E7E7]">
+                      {dayName}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {calendar.map((day, index) => {
+                  if (index % 7 === 0) {
+                    return (
+                      <tr key={index}>
+                        {[...Array(7).keys()].map((i) => {
+                          const currentIndex = index + i;
+                          return (
+                            <td key={i} className={`border border-[#D9D3D3] relative ${calendar[currentIndex].isInCurrentMonth ? "font-bold" : "text-gray-300"}`}>
+                              {calendar[currentIndex].day && <span className="absolute top-1 right-2 p-1">{calendar[currentIndex].day}</span>}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    );
+                  }
+                  return null;
+                })}
+              </tbody>
+            </table>
           </div>
-          <div className="h-[30rem] bg-[#908D8D] rounded-xl">
-            <div className="h-[5rem] rounded-t-xl bg-[#C5C3C3] items-center flex ps-10">
-              <p className="text-[#fff] font-semibold text-2xl">Detail Kegiatan Eskul</p>
+          <div className="bg-[#ffffff] md:h-auto h-[25rem] rounded-xl drop-shadow-lg md:col-span-1 col-span-2 md:mx-0 mx-7">
+            <div className="h-[4rem] rounded-t-xl bg-[#e0dbdb] items-center flex ps-10">
+              <p className="text-[#fff] font-semibold text-xl">Detail Kegiatan Eskul</p>
             </div>
           </div>
         </div>
