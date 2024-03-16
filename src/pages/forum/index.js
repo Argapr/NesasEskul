@@ -7,9 +7,37 @@ const Forum = () => {
   const [visibleDropdown, setVisibleDropdown] = useState(null);
   const [selectedEskul, setSelectedEskul] = useState(""); // State baru untuk menyimpan nama eskul yang sedang ditampilkan
 
-  const toggleVisibility = (dropdown, eskul) => { // Menerima parameter baru 'eskul'
+  const toggleVisibility = (dropdown, eskul) => {
+    // Menerima parameter baru 'eskul'
     setVisibleDropdown((prev) => (prev === dropdown ? null : dropdown));
     setSelectedEskul(eskul); // Perbarui state 'selectedEskul' dengan nama eskul yang diklik
+  };
+
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    // tambahkan properti lain sesuai kebutuhan
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const docRef = await addDoc(collection(db, "Paskibra"), formData);
+      console.log("Document written with ID: ", docRef.id);
+      // tambahkan logika lain setelah data berhasil disimpan
+      // misalnya menampilkan notifikasi, membersihkan form, dll.
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   return (
@@ -18,10 +46,29 @@ const Forum = () => {
       <main className="px-[10rem]">
         <div className="grid grid-cols-3 gap-3 mt-12">
           <div className="col-span-2">
-            <div className="bg-[#fff] drop-shadow-lg rounded-md p-5 h-[5rem]">
+            <div className="header bg-[#fff] drop-shadow-lg rounded-md p-5 h-[5rem] flex items-center justify-between">
               <p className="judul font-semibold text-2xl">{selectedEskul}</p>
+              <button className="h-12 w-12 rounded-lg bg-[#eceaea] flex justify-center items-center  flex-col">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    {" "}
+                    <path d="M6 12H18M12 6V18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>{" "}
+                  </g>
+                </svg>
+              </button>
             </div>
-            <div className="bg-[#fff] mt-3 drop-shadow-lg rounded-md p-5 h-[15rem]"></div>
+            <div className="question bg-[#fff] mt-3 drop-shadow-lg rounded-md p-5 h-[15rem]">
+              <div className=" bg-[#e0dddd] rounded-lg mt-2 p-5">
+                <div className="flex items-center">
+                  <div className="h-10 w-10 bg-black rounded-full"></div>
+                  <p className="ms-2">Users</p>
+                </div>
+                <div className=""></div>
+                <div className="flex"></div>
+              </div>
+            </div>
           </div>
           <div className="bg-[#fff] rounded-md p-2 drop-shadow-lg">
             <p className="text-center font-mono text-2xl">Kategori</p>
@@ -49,7 +96,7 @@ const Forum = () => {
                 </div>
                 {visibleDropdown === "Keagamaan" && (
                   <div className="mt-1 p-2 border border-[#e4dfdf] rounded-lg">
-                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center" >
+                    <div className="h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">
                       <p className="text-sm ms-3">Nasyid</p>
                     </div>
                     <div className="mt-2 h-7 border border-[#e4dfdf] hover:bg-[#e4dfdf] rounded-md flex items-center">

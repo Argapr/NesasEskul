@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,19 +24,19 @@ const Navbar = () => {
               </div>
               <div className="hidden md:block">
                 <div className="flex items-center">
-                  <Link href="/" className={`text-[#000] p-2 ${router.pathname === '/' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+                  <Link href="/" className={`text-[#000] p-2 m-1 ${router.pathname === "/" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                     Beranda
                   </Link>
-                  <Link href="/galeri" className={`text-[#000] p-2 ${router.pathname === '/galeri' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+                  <Link href="/galeri" className={`text-[#000] p-2 m-1 ${router.pathname === "/galeri" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                     Galeri
                   </Link>
-                  <Link href="/pengumuman" className={`text-[#000] p-2 ${router.pathname === '/pengumuman' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+                  <Link href="/pengumuman" className={`text-[#000] p-2 m-1 ${router.pathname === "/pengumuman" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                     Pengumuman
                   </Link>
-                  <Link href="/profil" className={`text-[#000] p-2 ${router.pathname === '/profil' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+                  <Link href="/profil" className={`text-[#000] p-2 m-1 ${router.pathname === "/profil" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                     Profil
                   </Link>
-                  <Link href="/jadwal" className={`text-[#000] p-2 ${router.pathname === '/jadwal' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+                  <Link href="/jadwal" className={`text-[#000] p-2 m-1 ${router.pathname === "/jadwal" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                     Jadwal
                   </Link>
                 </div>
@@ -79,19 +79,19 @@ const Navbar = () => {
         {isClick && (
           <div className="md:hidden mt-[-1px] bg-[#ffffff]">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link href="/" className={`text-[#000] p-2 block ${router.pathname === '/' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+              <Link href="/" className={`text-[#000] p-2 block ${router.pathname === "/" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                 Beranda
               </Link>
-              <Link href="/galeri" className={`text-[#000] p-2 block ${router.pathname === '/galeri' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+              <Link href="/galeri" className={`text-[#000] p-2 block ${router.pathname === "/galeri" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                 Galeri
               </Link>
-              <Link href="/pengumuman" className={`text-[#000] p-2 block ${router.pathname === '/pengumuman' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+              <Link href="/pengumuman" className={`text-[#000] p-2 block ${router.pathname === "/pengumuman" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                 Pengumuman
               </Link>
-              <Link href="/profil" className={`text-[#000] p-2 block ${router.pathname === '/profil' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+              <Link href="/profil" className={`text-[#000] p-2 block ${router.pathname === "/profil" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                 Profil
               </Link>
-              <Link href="/jadwal" className={`text-[#000] p-2 block ${router.pathname === '/jadwal' ? 'bg-[#90e6f0] rounded-xl text-white' : 'hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl'}`}>
+              <Link href="/jadwal" className={`text-[#000] p-2 block ${router.pathname === "/jadwal" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                 Jadwal
               </Link>
               <div className="flex justify-end">
