@@ -6,9 +6,6 @@ import Link from "next/link";
 import Navbar from "../components/navbar/navbarhome.js";
 
 const HomePage = () => {
-  const [image1, setImage1] = useState("/1.JPG");
-  const [image2, setImage2] = useState("/2.JPG");
-  const [galleryLink, setGalleryLink] = useState("/galeri");
   const [message, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [chat, setChat] = useState(null);
@@ -137,87 +134,43 @@ const HomePage = () => {
         <Navbar />
       </div>
       {/* start smartchat */}
-      <div className="bg-[#ffffff] overflow-hidden p-5 md:mx-12 mx-2 mt-[-9rem] rounded-lg drop-shadow-lg">
-        <div className="border border-gray-400 rounded-lg">
-          <div className="h-12 bg-gray-400">
-            <p className="text-[#000] text-2xl font-semibold p-2">SmartChat</p>
-          </div>
-          <div className="h-[32rem] border-b border-gray-400 flex-1 overflow-y-auto p-3">
-            {message.map((msg, index) => (
-              <div key={index} className={`mb-4 ${msg.role === "user" ? "text-right" : "text-left"}`}>
-                <span className={`${msg.role === "user" ? ` text-[#000000]` : msg.role === "bot" ? `text-black` : ""}`}>{msg.text}</span>
-                <p className={`text-xs text-black mt-1`}>{msg.role === "bot" ? "Bot" : "You"}</p>
-              </div>
-            ))}
-          </div>
-          <div className="relative md:px-10 px-2 m-2">
-            <input type="text" placeholder="Cari jawaban" className="w-full px-2 py-2 md:px-4 md:py-4 bg-[#dfd6d6] rounded-lg focus:outline-none" value={userInput} onChange={(e) => setUserInput(e.target.value)} onKeyDown={handleKeyPress} />
-            <button onClick={handleSendMessage} className="absolute inset-y-1 md:inset-y-2 md:right-12 right-0 flex items-center">
-              <Image src="/kirim.png" alt="icon logo" height={50} width={50} className="w-[60%] md:w-[70%] lg:w-[90%] object-contain" />
-            </button>
-          </div>
+      <div className="bg-[#ffffff] overflow-hidden md:mx-12 mx-2 mt-[-9rem] rounded-lg drop-shadow-lg">
+        <div className="h-[5rem] bg-[#dfd6d6] items-center flex">
+          <p className="text-[#7a7272] text-2xl font-semibold p-2">SmartChat</p>
+        </div>
+        <div className="h-[32rem] border-b border-gray-400 flex-1 overflow-y-auto p-3">
+          {message.map((msg, index) => (
+            <div key={index} className={`mb-4 ${msg.role === "user" ? "text-right" : "text-left"}`}>
+              <span className={`${msg.role === "user" ? ` text-[#000000]` : msg.role === "bot" ? `text-black` : ""}`}>{msg.text}</span>
+              <p className={`text-xs text-black mt-1`}>{msg.role === "bot" ? "Bot" : "You"}</p>
+            </div>
+          ))}
+        </div>
+        <div className="relative md:px-5 px-2 m-2">
+          <input type="text" placeholder="Cari jawaban" className="w-full px-2 py-2 md:px-4 md:py-4 bg-[#dfd6d6] rounded-lg focus:outline-none" value={userInput} onChange={(e) => setUserInput(e.target.value)} onKeyDown={handleKeyPress} />
+          <button onClick={handleSendMessage} className="absolute inset-y-1 md:inset-y-2 md:right-5 right-[-13px] flex items-center">
+            <Image src="/kirim.png" alt="icon logo" height={50} width={50} className="w-[60%] md:w-[70%] lg:w-[90%] object-contain" />
+          </button>
         </div>
       </div>
       {/* end smartchat */}
       {/* start about */}
-      <div className="bg-[#ffffff] h-auto rounded-lg mt-[2rem] relative drop-shadow-lg">
-        <div className="col-span-3 mx-5 lg:w-[50rem] w-[19rem]">
-          <p className="pt-5 text-xl md:text-4xl font-bold text-[#000]">Tentang Eskul</p>
+      <div className="bg-[#ffffff] p-5 rounded-lg mt-[2rem] relative drop-shadow-lg">
+        <div className="col-span-3 lg:w-[50rem] w-[19rem]">
+          <p className="text-xl md:text-4xl font-bold text-[#000]">Tentang Eskul</p>
           <p className="pt-2 text-[#000] md:text-xl lg:text-2xl">
             Terdapat beragam ekskul yang mencakup 36 pilihan kegiatan ekstrakurikuler. Mulai dari bidang olahraga, seni, hingga teknologi, para siswa memiliki peluang untuk mengembangkan bakat dan minat mereka melalui berbagai kegiatan yang
             menarik dan mendidik.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mx-5 lg:mx-10 mt-5 lg:mt7">
-          <div className="flex items-center justify-start">
-            <Image src="/IMG/logo-black.png" alt="logo" height={30} width={100} />
-          </div>
-          <div className="flex justify-center items-center flex-col">
-            <ul className="text-black text-xl flex">
-              <li className="m-2">
-                <Link href="/" onClick={(e) => handleLinkClick("/1.JPG", "/2.JPG", "/galeri", e)}>
-                  Galeri
-                </Link>
-              </li>
-              <li className="m-2">
-                <Link href="/" onClick={(e) => handleLinkClick("/2.JPG", "/1.JPG", "/pengumuman", e)}>
-                  Pengumuman
-                </Link>
-              </li>
-              <li className="m-2">
-                <Link href="/" onClick={(e) => handleLinkClick("/profil.png", "/profil-image.jpg", "/profil", e)}>
-                  Profil
-                </Link>
-              </li>
-            </ul>
-          </div>
+        <div className="p-5">
+          <Image src="/IMG/logo-black.png" alt="logo" height={30} width={100} />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mx-5 lg:mx-10">
-          <Image src="/logo.png" alt="logo about" width={300} height={300} className="mt-" />
-          <Image src={image1} alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
-          <Image src={image2} alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
+        <div className="grid md:grid-cols-3 gap-4 grid-cols-1">
+          <Image src="/IMG/about1.JPG" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
+          <Image src="/IMG/8.jpeg" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
+          <Image src="/IMG/about3.jpeg" alt="eskul marching band" width={500} height={500} className="h-[22rem] rounded-lg mt-[1rem]" />
         </div>
-
-        <div className="flex justify-end lg:me-10 me-5 mt-5">
-          <button className="bg-[#90e6f0] text-[#fff] font-semibold px-2 rounded-full">
-            <Link href={galleryLink} className="text-sm lg:text-lg">
-              Lihat semua
-            </Link>
-          </button>
-          <button className="bg-[#90e6f0] h-6 w-6 lg:h-10 lg:w-10 rounded-full">
-            <Link href={galleryLink} className="flex justify-center items-center flex-col">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-7 w-5 rotate-[-25deg]">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                <g id="SVGRepo_iconCarrier">
-                  {" "}
-                  <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>{" "}
-                </g>
-              </svg>
-            </Link>
-          </button>
-        </div>
-        <div className="h-10"></div>
       </div>
       {/* end about */}
       {/* start footer */}

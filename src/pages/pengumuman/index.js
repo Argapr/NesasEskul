@@ -161,54 +161,71 @@ const Pengumuman = () => {
                   return pengumuman.kategori === selectedCategory;
                 }
               })
-              .filter((galeri) => galeri.name.toLowerCase().includes(searchTerm.toLowerCase()))
-              .map((pengumuman) => (
-                <div key={pengumuman.id}>
-                  <div className="h-auto bg-[#ebe3e3b9] p-5 rounded-xl mt-2">
-                    <div className="h-[12rem] w-full bg-[#00000083] flex justify-center items-center">
-                      {pengumuman.image && <img src={pengumuman.image} alt={pengumuman.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "cover" }} />}
-                    </div>
-                    <p className="mt-2 font-bold text-3xl">{pengumuman.name}</p>
-                    <p className="mt-2">{pengumuman.pengumuman.length > 100 ? pengumuman.pengumuman.substring(0, 110) + "..." : pengumuman.pengumuman}</p>
-                    <div className="flex items-center mt-5">
-                      <div className="h-7 w-[7rem] bg-[#e9e1e1a1] rounded-xl flex items-center justify-center">
-                        <div className="h-5 w-5 bg-white rounded-full items-center flex justify-center">
-                          <Image src="/update.png" alt="" height={10} width={10} />
-                        </div>
-                        <p className="text-[10px] px-1">3, Januari, 2023</p>
+              .filter((pengumuman) => pengumuman.name.toLowerCase().includes(searchTerm.toLowerCase()))
+              .map((pengumuman) => {
+                const uploadDate = new Date(pengumuman.uploadDate);
+                const currentDate = new Date();
+                const timeDiff = currentDate.getTime() - uploadDate.getTime();
+                const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Hitung selisih hari
+
+                // Buat teks waktu upload yang sesuai
+                let timeText = "";
+                if (daysDiff === 1) {
+                  timeText = "1 hari yang lalu";
+                } else if (daysDiff > 1) {
+                  timeText = "${daysDiff} hari yang lalu";
+                } else {
+                  timeText = "Hari ini";
+                }
+
+                return (
+                  <div key={pengumuman.id}>
+                    <div className="h-auto bg-[#ebe3e3b9] p-5 rounded-xl mt-2">
+                      <div className="h-[12rem] w-full bg-[#00000083] flex justify-center items-center">
+                        {pengumuman.image && <img src={pengumuman.image} alt={pengumuman.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "cover" }} />}
                       </div>
-                      <div className="w-7 h-7 bg-[#e9e1e1a1] flex items-center justify-center rounded-full ms-3" onClick={() => handleShowDetail(pengumuman.id)}>
-                        <Image src="/speech-bubble.png" alt="" height={15} width={15} />
-                      </div>
-                    </div>
-                  </div>
-                  {selectedPost === pengumuman.id && (
-                    <div className="h-auto bg-[#f0eded] p-5 rounded-xl mt-1">
-                      <p>{pengumuman.pengumuman}</p>
-                      <p className="mt-5 font-semibold">Komentar {comments.length}</p>
-                      <div className="h-[1px] w-full bg-[#2b2a2a5b] mt-1"></div>
-                      <div className="column-comment">
-                        {comments.map((comment, index) => (
-                          <div key={index} className="mt-3">
-                            <p className="font-semibold">{comment.username}</p>
-                            <p>{comment.comment}</p>
+                      <p className="mt-2 font-bold text-3xl">{pengumuman.name}</p>
+                      <p className="mt-2">{pengumuman.pengumuman.length > 100 ? pengumuman.pengumuman.substring(0, 110) + "..." : pengumuman.pengumuman}</p>
+                      <div className="flex items-center mt-5">
+                        <div className="h-7 px-3 bg-[#e9e1e1a1] rounded-xl flex items-center justify-center">
+                          <div className="h-5 w-5 bg-white rounded-full items-center flex justify-center">
+                            <Image src="/update.png" alt="" height={10} width={10} />
                           </div>
-                        ))}
-                      </div>
-                      <div className="h-[1px] w-full bg-[#2b2a2a5b] mt-1"></div>
-                      <div className="mt-3">
-                        <div className="grid grid-cols-2 gap-2">
-                          <input type="text" placeholder="Masukkan nama" value={username} onChange={(e) => setUsername(e.target.value)} className="py-2 px-4 focus:outline-none rounded-lg mt-2" />
-                          <input type="text" placeholder="Berikan komentar" value={newComment} onChange={(e) => setNewComment(e.target.value)} className="py-2 px-4 focus:outline-none rounded-lg mt-2" />
+                          <p className="text-[10px] px-1">{timeText}</p>
                         </div>
-                        <button onClick={addComment} className="py-2 px-4 bg-[#90e6f0] text-white rounded-lg mt-2 w-full">
-                          Kirim
-                        </button>
+                        <div className="w-7 h-7 bg-[#e9e1e1a1] flex items-center justify-center rounded-full ms-3" onClick={() => handleShowDetail(pengumuman.id)}>
+                          <Image src="/speech-bubble.png" alt="" height={15} width={15} />
+                        </div>
                       </div>
                     </div>
-                  )}
-                </div>
-              ))}
+                    {selectedPost === pengumuman.id && (
+                      <div className="h-auto bg-[#f0eded] p-5 rounded-xl mt-1">
+                        <p>{pengumuman.pengumuman}</p>
+                        <p className="mt-5 font-semibold">Komentar {comments.length}</p>
+                        <div className="h-[1px] w-full bg-[#2b2a2a5b] mt-1"></div>
+                        <div className="column-comment">
+                          {comments.map((comment, index) => (
+                            <div key={index} className="mt-3">
+                              <p className="font-semibold">{comment.username}</p>
+                              <p>{comment.comment}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="h-[1px] w-full bg-[#2b2a2a5b] mt-1"></div>
+                        <div className="mt-3">
+                          <div className="grid grid-cols-2 gap-2">
+                            <input type="text" placeholder="Masukkan nama" value={username} onChange={(e) => setUsername(e.target.value)} className="py-2 px-4 focus:outline-none rounded-lg mt-2" />
+                            <input type="text" placeholder="Berikan komentar" value={newComment} onChange={(e) => setNewComment(e.target.value)} className="py-2 px-4 focus:outline-none rounded-lg mt-2" />
+                          </div>
+                          <button onClick={addComment} className="py-2 px-4 bg-[#90e6f0] text-white rounded-lg mt-2 w-full">
+                            Kirim
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
           </div>
         </div>
         {showScrollButton && (
