@@ -1,4 +1,6 @@
+"use client";
 import { useState, useEffect } from "react";
+import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/navbar/navbarhome.js";
@@ -7,6 +9,93 @@ const HomePage = () => {
   const [image1, setImage1] = useState("/1.JPG");
   const [image2, setImage2] = useState("/2.JPG");
   const [galleryLink, setGalleryLink] = useState("/galeri");
+  const [message, setMessages] = useState([]);
+  const [userInput, setUserInput] = useState("");
+  const [chat, setChat] = useState(null);
+  const [error, setError] = useState(null);
+
+  const API_KEY = "AIzaSyDONTPyCQJnFxZdAUvbKL-d5TR4tRKBok8";
+  const MODEL_NAME = "gemini-1.0-pro-001";
+
+  const genAI = new GoogleGenerativeAI(API_KEY);
+
+  const generationConfig = {
+    temperature: 0.9,
+    topK: 1,
+    topP: 1,
+    maxOutputTokens: 2048,
+  };
+
+  const safetySettings = [
+    {
+      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    },
+  ];
+
+  useEffect(() => {
+    const initChat = async () => {
+      try {
+        const newChat = await genAI.getGenerativeModel({ model: MODEL_NAME }).startChat({
+          generationConfig,
+          safetySettings,
+          history: message.map((msg) => ({
+            text: msg.text,
+            role: msg.role,
+          })),
+        });
+        setChat(newChat);
+      } catch (error) {
+        setError("Failed to initialixe char. please try again");
+      }
+    };
+    initChat();
+  }, []);
+
+  const handleSendMessage = async () => {
+    try {
+      const userMessage = {
+        text: userInput,
+        role: "user",
+        timestamp: new Date(),
+      };
+
+      setMessages((prevMessages) => [...prevMessages, userMessage]);
+      setUserInput("");
+
+      if (chat) {
+        const result = await chat.sendMessage(userInput);
+        const botMessage = {
+          text: result.response.text(),
+          role: "bot",
+          timestamp: new Date(),
+        };
+
+        setMessages((prevMessages) => [...prevMessages, botMessage]);
+      }
+    } catch (error) {
+      setError("Failed to send message. please try again.");
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.prevenDefault();
+      handleSendMessage();
+    }
+  };
 
   // State to manage whether to show the scroll-to-top button
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -48,20 +137,25 @@ const HomePage = () => {
         <Navbar />
       </div>
       {/* start smartchat */}
-      <div className="bg-[#ffffff] relative h-[40rem] lg:h-screen md:h-[50rem] md:mx-12 mx-2 mt-[-9rem] rounded-lg flex justify-center items-center flex-col drop-shadow-lg">
-        <p className="text-[#000] absolute left-5 top-2 text-2xl font-semibold">SmartChat</p>
-        <div className="w-full h-[40rem] flex flex-col justify-center items-center">
-          <Image src="/smartchat-logo.png" alt="logo" height={100} width={100} className="mx-auto w-[15%] md:w-[10%] lg:w-[7%] object-contain" />
-          <p className="text-center mt-2 text-[#787070] md:text-base lg:text-sm text-[12px]">
-            Berikan pertanyaan anda seputar eskul yang ada di <br /> SMK NEGERI 1 SUBANG
-          </p>
-        </div>
-
-        <div className="relative w-full md:px-10 px-5 mb-5">
-          <input type="text" placeholder="Cari jawaban" className="w-full px-2 py-2 md:px-4 md:py-4 bg-[#dfd6d6] rounded-lg focus:outline-none" />
-          <button className="absolute inset-y-1 md:inset-y-2 md:right-12 right-0 flex items-center">
-            <Image src="/kirim.png" alt="icon logo" height={50} width={50} className="w-[60%] md:w-[70%] lg:w-[90%] object-contain" />
-          </button>
+      <div className="bg-[#ffffff] overflow-hidden p-5 md:mx-12 mx-2 mt-[-9rem] rounded-lg drop-shadow-lg">
+        <div className="border border-gray-400 rounded-lg">
+          <div className="h-12 bg-gray-400">
+            <p className="text-[#000] text-2xl font-semibold p-2">SmartChat</p>
+          </div>
+          <div className="h-[32rem] border-b border-gray-400 flex-1 overflow-y-auto p-3">
+            {message.map((msg, index) => (
+              <div key={index} className={`mb-4 ${msg.role === "user" ? "text-right" : "text-left"}`}>
+                <span className={`${msg.role === "user" ? ` text-[#000000]` : msg.role === "bot" ? `text-black` : ""}`}>{msg.text}</span>
+                <p className={`text-xs text-black mt-1`}>{msg.role === "bot" ? "Bot" : "You"}</p>
+              </div>
+            ))}
+          </div>
+          <div className="relative md:px-10 px-2 m-2">
+            <input type="text" placeholder="Cari jawaban" className="w-full px-2 py-2 md:px-4 md:py-4 bg-[#dfd6d6] rounded-lg focus:outline-none" value={userInput} onChange={(e) => setUserInput(e.target.value)} onKeyDown={handleKeyPress} />
+            <button onClick={handleSendMessage} className="absolute inset-y-1 md:inset-y-2 md:right-12 right-0 flex items-center">
+              <Image src="/kirim.png" alt="icon logo" height={50} width={50} className="w-[60%] md:w-[70%] lg:w-[90%] object-contain" />
+            </button>
+          </div>
         </div>
       </div>
       {/* end smartchat */}

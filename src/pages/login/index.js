@@ -38,8 +38,8 @@ const Login = () => {
   };
 
   return (
-    <div className="relative h-screen w-full flex justify-center items-center flex-col">
-      <div className="absolute top-7 left-0 ps-10 flex items-center">
+    <div className="relative h-screen w-full flex justify-center items-center flex-col overflow-hidden">
+      <div className="absolute top-7 left-4 md:left-10 flex items-center">
         <Link href="/">
           <Image src="/logo-sekolah.png" alt="" height={30} width={50} />
         </Link>
@@ -59,11 +59,8 @@ const Login = () => {
           <button type="submit" className="h-[4rem] w-[20rem] bg-[#9A9A9A] text-[#fff] text-2xl rounded-xl mt-[4rem]">
             Login
           </button>
-          <div className="flex items-center mt-2">
-            <div className="h-[2px] w-[3rem] bg-[#9A9A9A] rounded-lg mx-1"></div>
-            <p className="text-[#9A9A9A] text-[1rem]">Login menggunakan Google</p>
-            <div className="h-[2px] w-[3rem] bg-[#9A9A9A] rounded-lg mx-1"></div>
-          </div>
+          <div className="h-[2px] w-full bg-[#9A9A9A] rounded-lg mt-4"></div>
+          <p className="text-[#9A9A9A] md:text-[1rem] text-sm text-center mt-2">Login menggunakan Google</p>
           <div className="flex justify-center items-center flex-col mt-3">
             <div className="google" onClick={handleLoginWithGoogle}>
               <Image src="/google.png" alt="" height={50} width={20} className="text-center" />
