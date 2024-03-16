@@ -6,3 +6,10 @@ body {
   background-color: #ebe3e3b9;
   overflow-x: hidden;
 }
+
+@media (max-width: 768px) { /* Adjust the breakpoint as needed */
+  .vector-image {
+    display: none;
+  }
+}
+
