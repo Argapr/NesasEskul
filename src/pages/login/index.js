@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="relative bg-[#fff] h-screen w-full flex justify-center items-center flex-col">
+    <div className="relative h-screen w-full flex justify-center items-center flex-col overflow-hidden z-50">
       <div className="absolute top-7 left-0 ps-10 flex items-center">
         <Link href="/">
           <Image src="/logo-sekolah.png" alt="" height={30} width={50} />
@@ -71,10 +71,10 @@ const Login = () => {
           </div>
         </div>
       </form>
-      <Image src="/Vector-1.svg" alt="" height={10} width={400} className="absolute mt-[14.5rem] mr-[75rem] z-10" />
-      <Image src="/Vector-2.svg" alt="" height={10} width={550} className="absolute mt-[9rem] mr-[68rem]" />
-      <Image src="/Vector-3.svg" alt="" height={10} width={550} className="absolute ms-[66rem] mb-[17rem]" />
-      <Image src="/Vector-4.svg" alt="" height={10} width={550} className="absolute ms-[75rem] mb-[10rem]" />
+      <Image src="/Vector-1.svg" alt="" height={10} width={400} className="absolute md:mt-[14.5rem] mt-[15rem] mr-[8rem] md:mr-[75rem] z-10" />
+      <Image src="/Vector-2.svg" alt="" height={10} width={550} className="absolute md:mt-[9rem] mt-[20rem] mr-[12rem] md:mr-[68rem]" />
+      <Image src="/Vector-3.svg" alt="" height={10} width={550} className="absolute md:ms-[66rem] top-[-5rem] right-[-10rem] md:mb-[17rem]" />
+      <Image src="/Vector-4.svg" alt="" height={10} width={550} className="absolute md:ms-[75rem] md:mb-[10rem]" />
     </div>
   );
 };

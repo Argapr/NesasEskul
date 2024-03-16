@@ -115,7 +115,7 @@ const Pengumuman = () => {
       </header>
       <main className="md:mx-[8rem]">
         <div className="md:mx-[5rem] mx-2 grid md:grid-cols-3 grid-cols-2 gap-4 md:mt-[4rem] mt-[2rem] bg-[#fff] md:p-5 p-2 rounded-lg">
-          <div className=" rounded-lg md:h-[32rem] bg-[#ebe3e3b9] h-[13rem] p-5 mt-2 col-span-2 md:col-span-1">
+          <div className=" rounded-lg md:h-[32rem] bg-[#ebe3e3b9] h-auto p-5 mt-2 col-span-2 md:col-span-1">
             <div className="relative">
               <input type="text" placeholder="cari eskul" className="px-2 py-2 w-full rounded-lg focus:outline-none border border-[#000] bg-transparent focus:text-[#363535] text-[#363535]" value={searchTerm} onChange={handleSearchChange} />
               <button style={{ position: "absolute", top: "50%", right: "5px", transform: "translateY(-50%)" }} className="h-8 w-8 rounded-lg bg-[#fff] flex items-center flex-col justify-center">
