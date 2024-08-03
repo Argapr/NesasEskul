@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../../components/navbar/navbarFeature.js";
+import Navbar from "../../components/Navbar/navbarFeature.js";
 import React, { useState, useEffect } from "react";
 import { db } from "@/firebase/firebaseConfig.js";
 import { collection, getDocs, addDoc } from "firebase/firestore";

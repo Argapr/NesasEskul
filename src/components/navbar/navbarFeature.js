@@ -41,25 +41,6 @@ const Navbar = () => {
                   </Link>
                 </div>
               </div>
-              <div className="hidden md:block">
-                <div className="flex">
-                  <button className="bg-[#90e6f0] text-white font-bold py-2 px-4 rounded-full">
-                    <Link href="/forum">Forum</Link>
-                  </button>
-                  <button className="bg-[#90e6f0] py-2 px-2 rounded-full ms-[-8px]">
-                    <Link href="/forum">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-7 rotate-[-25deg]">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                          {" "}
-                          <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>{" "}
-                        </g>
-                      </svg>
-                    </Link>
-                  </button>
-                </div>
-              </div>
               <div className="md:hidden flex items-center">
                 <button className="inline-flex items-center justify-center p-2 rounded-md text-black md:text-black hover:text-black" onClick={toggleNavbar}>
                   {isClick ? (
@@ -94,23 +75,6 @@ const Navbar = () => {
               <Link href="/jadwal" className={`text-[#000] p-2 block ${router.pathname === "/jadwal" ? "bg-[#90e6f0] rounded-xl text-white" : "hover:text-[#fff] hover:bg-[#90e6f0] hover:rounded-xl"}`}>
                 Jadwal
               </Link>
-              <div className="flex justify-end">
-                <button className="bg-[#90e6f0] text-white font-bold py-2 px-4 rounded-full">
-                  <Link href="/forum">Forum</Link>
-                </button>
-                <button className="bg-[#90e6f0] py-2 px-2 rounded-full ms-[-8px]">
-                  <Link href="/forum">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-7 rotate-[-25deg]">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                      <g id="SVGRepo_iconCarrier">
-                        {" "}
-                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>{" "}
-                      </g>
-                    </svg>
-                  </Link>
-                </button>
-              </div>
               <div className="h-4"></div>
             </div>
           </div>

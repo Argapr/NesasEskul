@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Navbar from "@/components/navbar/navbarFeature";
+import Navbar from "@/components/Navbar/navbarFeature";
 import React, { useState, useEffect } from "react";
 import { db } from "@/firebase/firebaseConfig.js";
 import { collection, getDocs, addDoc, query, where, onSnapshot } from "firebase/firestore";

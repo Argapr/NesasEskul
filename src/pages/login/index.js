@@ -38,40 +38,33 @@ const Login = () => {
   };
 
   return (
-    <div className="relative h-screen w-full flex justify-center items-center flex-col overflow-hidden">
-      <div className="absolute top-7 left-4 md:left-10 flex items-center">
-        <Link href="/">
-          <Image src="/logo-sekolah.png" alt="" height={30} width={50} />
-        </Link>
-        <h1 className="text-3xl font-bold text-[#9A9A9A] ml-2">Login</h1>
+    <div className="grid grid-cols-2 gap-5 p-5 h-screen" style={{ backgroundImage: "url('/IMG/back-login.JPG')", backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
+      <div className="flex flex-col justify-between p-5">
+        <img src="/IMG/logo-black.png" alt="" height={50} width={180} />
+        <p className="text-white drop">
+          Tumbuhkan Bakatmu, Temukan Passionmu: <br /> Bersama Eskul, Menyatu dalam Ekstrakurikuler!
+        </p>
       </div>
-      <form onSubmit={handleSubmit} className="h-[30rem] w-[25rem] bg-[#fff] shadow-xl rounded-lg flex justify-center items-center flex-col">
-        <p className="text-[#9A9A9A] font-semibold text-2xl text-center mt-5">Welcome</p>
-        <div className="mx-10 mt-11">
-          <label htmlFor="email" className="text-[#9A9A9A] font-semibold">
-            Email
-          </label>
-          <input id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="h-[3rem] w-[20rem] border border-[#9A9A9A] rounded-lg focus:outline-none px-4 py-4" />
-          <label htmlFor="password" className="text-[#9A9A9A] font-medium">
-            Password
-          </label>
-          <input id="password" value={password} type="password" onChange={(e) => setPassword(e.target.value)} className="h-[3rem] w-[20rem] border border-[#9A9A9A] rounded-lg focus:outline-none px-4 py-4" />
-          <button type="submit" className="h-[4rem] w-[20rem] bg-[#9A9A9A] text-[#fff] text-2xl rounded-xl mt-[4rem]">
+      <form onSubmit={handleSubmit} className="bg-white rounded-xl drop-shadow-xl flex justify-around items-center flex-col">
+        <img src="/IMG/welcome-black.png" alt="logo welcome" height={200} width={200} />
+        <div className="mx-[13rem] mt-[-10rem]">
+          <p className="text-center text-[#555353]">Silakan login untuk memulai berdiskusi dan berinteraksi dengan komunitas di forum kami.</p>
+          <input placeholder="Enter your Email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="h-[2.5rem] w-full border border-[#9A9A9A] rounded-full focus:outline-none px-4 py-4 mt-10" />
+          <input placeholder="Ëntet yout Password" value={password} type="password" onChange={(e) => setPassword(e.target.value)} className="h-[2.5rem] w-full border border-[#9A9A9A] rounded-full focus:outline-none px-4 py-4 mt-3" />
+          <button type="submit" className="h-[3.5rem] w-full bg-[#9A9A9A] text-[#fff] text-2xl rounded-full mt-[2.5rem]">
             Login
           </button>
-          <div className="h-[2px] w-full bg-[#9A9A9A] rounded-lg mt-4"></div>
-          <p className="text-[#9A9A9A] md:text-[1rem] text-sm text-center mt-2">Login menggunakan Google</p>
-          <div className="flex justify-center items-center flex-col mt-3">
-            <div className="google" onClick={handleLoginWithGoogle}>
-              <Image src="/google.png" alt="" height={50} width={20} className="text-center" />
-            </div>
+          <div className="flex items-center py-3">
+            <div className="mx-4 h-[1.3px] w-full rounded-full bg-[#a0a0a0]"></div>
+            <p className="">or</p>
+            <div className="mx-4 h-[1.3px] w-full rounded-full bg-[#a0a0a0]"></div>
           </div>
+          <button className="h-[2.5rem] w-full border border-[#9A9A9A] rounded-full flex justify-center items-center" onClick={handleLoginWithGoogle}>
+            <Image src="/google.png" alt="" height={50} width={18} />
+            <p className="px-2 text-[#c4b8b8] text-sm">Log in with google</p>
+          </button>
         </div>
       </form>
-      <Image src="/Vector-1.svg" alt="" height={10} width={400} className="vector-image absolute mt-[14.5rem] mr-[75rem] z-10" />
-      <Image src="/Vector-2.svg" alt="" height={10} width={550} className="vector-image absolute mt-[9rem] mr-[68rem]" />
-      <Image src="/Vector-3.svg" alt="" height={10} width={550} className="vector-image absolute ms-[66rem] mb-[17rem]" />
-      <Image src="/Vector-4.svg" alt="" height={10} width={550} className="vector-image absolute ms-[75rem] mb-[10rem]" />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../../components/navbar/navbarFeature.js";
+import Navbar from "../../components/Navbar/navbarFeature.js";
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebaseConfig.js";
 import { collection, getDocs, addDoc } from "firebase/firestore";
@@ -149,7 +149,7 @@ const Galeri = () => {
               if (daysDiff === 1) {
                 timeText = "1 hari yang lalu";
               } else if (daysDiff > 1) {
-                timeText = '${daysDiff} hari yang lalu';
+                timeText = "${daysDiff} hari yang lalu";
               } else {
                 timeText = "Hari ini";
               }

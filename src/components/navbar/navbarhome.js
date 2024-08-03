@@ -39,18 +39,6 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            <div className="hidden md:block">
-              <div className="flex">
-                <button className="bg-white text-black font-bold py-2 px-4 rounded-full">
-                  <Link href="/forum">Forum</Link>
-                </button>
-                <button className="bg-white py-2 px-2 rounded-full ms-[-5px]">
-                  <Link href="/forum">
-                    <Image src="/next-to-forum.png" alt="next-to-forum" height={20} width={20} className="rotate-[-25deg]" />
-                  </Link>
-                </button>
-              </div>
-            </div>
             <div className="md:hidden flex items-center">
               <button className="inline-flex items-center justify-center p-2 rounded-md text-white md:text-white hover:text-white focus:outline focus:ring-2 focus:ring-inset focus:ring-white" onClick={toggleNavbar}>
                 {isClick ? (
@@ -84,16 +72,6 @@ const Navbar = () => {
               <Link href="/jadwal" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
                 Jadwal
               </Link>
-              <div className="flex justify-end">
-                <button className="bg-white text-black font-bold py-1 px-3 rounded-full">
-                  <Link href="/forum">Forum</Link>
-                </button>
-                <button className="bg-white py-2 px-2 rounded-full ms-[-5px]">
-                  <Link href="/forum">
-                    <Image src="/next-to-forum.png" alt="next-to-forum" height={20} width={20} className="rotate-[-25deg]" />
-                  </Link>
-                </button>
-              </div>
               <div className="h-4"></div>
             </div>
           </div>
