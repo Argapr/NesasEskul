@@ -182,7 +182,7 @@ const Pengumuman = () => {
                   <div key={pengumuman.id}>
                     <div className="h-auto bg-[#ebe3e3b9] p-5 rounded-xl mt-2">
                       <div className="h-[12rem] w-full bg-[#00000083] flex justify-center items-center">
-                        {pengumuman.image && <img src={pengumuman.image} alt={pengumuman.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "cover" }} />}
+                        {pengumuman.image && <Image src={pengumuman.image} alt={pengumuman.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "cover" }} />}
                       </div>
                       <p className="mt-2 font-bold text-3xl">{pengumuman.name}</p>
                       <p className="mt-2">{pengumuman.pengumuman.length > 100 ? pengumuman.pengumuman.substring(0, 110) + "..." : pengumuman.pengumuman}</p>
