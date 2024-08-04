@@ -1,8 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
-import Navbar from "@/components/Navbar/navbarFeature.js";
-import Head from "next/head";
-import { useState } from "react";
+// pages/jadwal.js
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Navbar from '../../components/Navbar/navbarFeature.js';
 
 const daysInMonth = (month, year) => {
   return new Date(year, month + 1, 0).getDate();
@@ -13,7 +12,6 @@ const generateCalendar = (month, year) => {
   const firstDay = new Date(year, month).getDay();
   const calendar = [];
 
-  // Menambahkan sel kosong di awal kalender
   for (let i = 0; i < firstDay; i++) {
     const prevMonthDays = daysInMonth(month - 1 < 0 ? 11 : month - 1, month - 1 < 0 ? year - 1 : year);
     calendar.push({
@@ -23,7 +21,6 @@ const generateCalendar = (month, year) => {
     });
   }
 
-  // Menambahkan tanggal bulan saat ini
   for (let i = 1; i <= totalDays; i++) {
     calendar.push({
       day: i,
@@ -32,7 +29,6 @@ const generateCalendar = (month, year) => {
     });
   }
 
-  // Menambahkan sel kosong di akhir kalender
   const remainingDays = 7 - (calendar.length % 7);
   for (let i = 0; i < remainingDays; i++) {
     calendar.push({
@@ -48,6 +44,19 @@ const generateCalendar = (month, year) => {
 const Jadwal = () => {
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
+  const [events, setEvents] = useState([]);
+  const [selectedDay, setSelectedDay] = useState('');
+  const [activeDay, setActiveDay] = useState(null);
+  const [detail, setDetail] = useState('');
+
+  useEffect(() => {
+    const dummyEvents = [
+      { kegiatan1: "Senin", kegiatan2: "Rabu", name: "Marching Band" },
+      { kegiatan1: "Selasa", kegiatan2: "Rabu", name: "Futsal" },
+      { kegiatan1: "Jum'at", kegiatan2: "Sabtu", name: "Paskibra" }
+    ];
+    setEvents(dummyEvents);
+  }, []);
 
   const calendar = generateCalendar(month, year);
 
@@ -70,6 +79,20 @@ const Jadwal = () => {
   };
 
   const dayNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
+
+  const handleDayClick = (day, dayOfWeek) => {
+    const dayName = dayNames[dayOfWeek];
+    setSelectedDay(dayName);
+    setActiveDay(day);
+
+    const activities = events.filter(event => event.kegiatan1 === dayName || event.kegiatan2 === dayName);
+
+    if (activities.length > 0) {
+      setDetail(activities.map(activity => `<p>${activity.name}</p>`).join(''));
+    } else {
+      setDetail(null);
+    }
+  };
 
   return (
     <>
@@ -112,8 +135,13 @@ const Jadwal = () => {
                       <tr key={index}>
                         {[...Array(7).keys()].map((i) => {
                           const currentIndex = index + i;
+                          const isActive = activeDay === calendar[currentIndex].day && calendar[currentIndex].isInCurrentMonth;
                           return (
-                            <td key={i} className={`border border-[#D9D3D3] relative ${calendar[currentIndex].isInCurrentMonth ? "font-bold" : "text-gray-300"}`}>
+                            <td
+                              key={i}
+                              className={`border border-[#D9D3D3] relative ${calendar[currentIndex].isInCurrentMonth ? "font-bold" : "text-gray-300"} ${isActive ? 'bg-[#dad8d873] text-white' : ''}`}
+                              onClick={() => calendar[currentIndex].day && handleDayClick(calendar[currentIndex].day, calendar[currentIndex].dayOfWeek)}
+                            >
                               {calendar[currentIndex].day && <span className="absolute top-1 right-2 p-1">{calendar[currentIndex].day}</span>}
                             </td>
                           );
@@ -130,6 +158,7 @@ const Jadwal = () => {
             <div className="h-[4rem] rounded-t-xl bg-[#e0dbdb] items-center flex ps-10">
               <p className="text-[#fff] font-semibold text-xl">Detail Kegiatan Eskul</p>
             </div>
+            <div className="p-5 text-2xl" dangerouslySetInnerHTML={{ __html: detail }}></div>
           </div>
         </div>
       </main>

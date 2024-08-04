@@ -7,6 +7,10 @@ body {
   overflow-x: hidden;
 }
 
+.active-day {
+  background-color: #dfdcdcb7;
+}
+
 .loading {
   position: fixed;
   z-index: 999;
@@ -128,4 +132,3 @@ body {
     display: none;
   }
 }
-

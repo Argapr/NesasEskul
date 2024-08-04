@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../../components/Navbar/navbarFeature.js";
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebaseConfig.js";
@@ -190,7 +188,6 @@ const Galeri = () => {
               );
             })}
         </div>
-        {/* Scroll-to-top button */}
         {showScrollButton && (
           <div className="z-50 fixed bottom-10 right-5 md:right-10 bg-[#90e6f0] drop-shadow-lg px-2 py-2 md:px-4 md:py-4 rounded-full shadow cursor-pointer" onClick={scrollToTop}>
             <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none" className="md:w-7 w-6">

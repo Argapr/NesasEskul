@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Navbar from "@/components/Navbar/navbarFeature";
+import Navbar from "../../components/navbar/navbarFeature";
 import React, { useState, useEffect } from "react";
-import { db } from "@/firebase/firebaseConfig.js";
+import { db } from "../../firebase/firebaseConfig";
 import { collection, getDocs, addDoc, query, where, onSnapshot } from "firebase/firestore";
 
 async function fetchDataFromFirestore() {

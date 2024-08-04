@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import NesasPintar from "@/components/smartchat";
+import NesasPintar from "../components/smartchat";
 import Image from "next/image";
-import Navbar from "@/components/navbar/navbarhome";
+import Navbar from "../components/navbar/navbarhome";
+import Carousel from "../components/Carousel";
 
 const HomePage = () => {
-
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   const scrollToTop = () => {
@@ -33,9 +33,9 @@ const HomePage = () => {
 
   return (
     <main className="lg:m-8 m-2 ">
-      <div className="relative h-screen rounded-lg bg-blue-200">
+      <div className="relative h-screen rounded-lg bg-blue-200 mb-[-9rem]">
         <div className="carousel rounded-lg bg-blue-400">
-          {/* <Carousel /> */}
+          <Carousel />
         </div>
         <div className="absolute top-0 left-0 right-0 z-50">
           <Navbar />

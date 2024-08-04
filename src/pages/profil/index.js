@@ -1,8 +1,8 @@
+"use client";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../../components/Navbar/navbarFeature.js";
 import React, { useState, useEffect } from "react";
-import { db } from "@/firebase/firebaseConfig.js";
+import { db } from "../../firebase/firebaseConfig.js";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useRouter } from "next/router.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -73,31 +73,30 @@ const Profil = () => {
         <Navbar />
       </header>
       <main className="md:mx-10 md:mt-[5rem] mt-[3rem] mx-2">
-        <div className="grid md:grid-cols-4 grid-cols-5 gap-4">
-          <div className="col-span-3 md:col-span-3 relative">
-            <input type="text" placeholder="Cari Eskul" className="w-full px-3 md:h-14 h-10 md:px-4 md:py-4 rounded-lg focus:outline-none border border-[#fff] bg-transparent" value={searchTerm} onChange={handleSearchChange} />
-            <button className="absolute top-0 right-0 md:h-[3.5rem] h-[2.5rem] px-5 flex items-center bg-[#fff] rounded-r-lg">
-              <Image src="/search.png" alt="icon logo" height={20} width={20} />
-            </button>
-          </div>
-          <div className="relative col-span-2 md:col-span-1">
-            <select name="cars" id="cars" className="appearance-none w-full bg-transparent border border-gray-300 h-10 md:h-14 pl-3 pr-10 rounded-lg leading-tight focus:outline-none focus:bg-[#2f2d2d  ] focus:border-[#fff] text-[#d6d6d6]">
-              <option value="">Kategori</option>
-              <option value="keagamaan">Keagamaan</option>
-              <option value="teknologi">Teknologi</option>
-              <option value="kesenian">Kesenian</option>
-              <option value="organisasi">Organisasi</option>
-              <option value="pkk">PKK</option>
-              <option value="olahraga">Olahraga</option>
-              <option value="bahasa">Bahasa</option>
-              <option value="bela-diri">Bela Diri</option>
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center px-02 md:h-[3.5rem] w-12 bg-white rounded-r-lg text-[#000]">
-              <svg className="fill-current h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-              </svg>
-            </div>
-          </div>
+        <div className="relative md:w-[30rem] w-full">
+          <input
+            type="text"
+            placeholder="Cari Foto"
+            className="w-full md:w-[30rem] px-4 py-2 focus:outline-none focus:text-[##494646] text-[#494646] bg-transparent border border-[#000000] rounded-lg"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          <button style={{ position: "absolute", top: "50%", right: "5px", transform: "translateY(-50%)" }} className="h-8 w-8 rounded-lg bg-[#fff] flex items-center flex-col justify-center">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <path
+                  d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                  stroke="#000000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>{" "}
+              </g>
+            </svg>
+          </button>
         </div>
         <div className="mt-[2rem] mx-5">
           <div className="grid md:grid-cols-4 gap-4">
@@ -118,7 +117,7 @@ const Profil = () => {
               </div>
             ))}
           </div>
-          {/* Overlay */}
+          {/* Detail Profile */}
           {selectedProfile && (
             <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
               <div className="bg-white p-5 rounded-lg">
@@ -152,7 +151,7 @@ const Profil = () => {
             </div>
           )}
         </div>
-        {/* Konten Anda */}
+        {/* Button To Top */}
         {showScrollButton && (
           <div className="z-50 fixed bottom-10 right-5 md:right-10 bg-[#fff] px-2 py-2 md:px-4 md:py-4 rounded-full shadow cursor-pointer drop-shadow-2xl" onClick={scrollToTop}>
             <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none" className="md:w-7 w-6">
