@@ -1,8 +1,9 @@
-import Navbar from "../../components/Navbar/navbarFeature.js";
+import Navbar from "../../components/Navbar/navbarFeature.jsx";
 import React, { useState, useEffect } from "react";
-import { db } from "../../firebase/firebaseConfig.js";
+import { db } from "../../firebase/firebaseConfig.jsx";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import Image from "next/image.js";
 
 async function fetchDataFromFirestore() {
   const querySnapshot = await getDocs(collection(db, "Galeri"));
@@ -178,7 +179,7 @@ const Galeri = () => {
                   <p className="absolute bottom-2 text-xl font-semibold text-[#fff] drop-shadow-2xl z-50" style={{ position: "absolute", left: "50%", transform: "translateX(-50%)" }}>
                     {galeri.name}
                   </p>
-                  {galeri.image && <img src={galeri.image} alt={galeri.name} height={700} width={700} objectFit="cover" className="rounded-lg" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }} />}
+                  {galeri.image && <Image src={galeri.image} alt={galeri.name} height={700} width={700} objectFit="cover" className="rounded-lg" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }} />}
                   {isDownloadLinkVisible && (
                     <a href={galeri.image} download={galeri.name} style={{ display: "none" }}>
                       Download Image

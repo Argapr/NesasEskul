@@ -1,7 +1,7 @@
 // pages/jadwal.js
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Navbar from '../../components/Navbar/navbarFeature.js';
+import Navbar from '../../components/Navbar/navbarFeature.jsx';
 
 const daysInMonth = (month, year) => {
   return new Date(year, month + 1, 0).getDate();

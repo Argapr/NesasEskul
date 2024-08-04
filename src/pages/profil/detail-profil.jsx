@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../../components/Navbar/navbarFeature.js";
+import Navbar from "../../components/Navbar/navbarFeature.jsx";
 
 const deskripsiProfil = () => {
   return (

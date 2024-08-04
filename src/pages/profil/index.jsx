@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import Navbar from "../../components/Navbar/navbarFeature.js";
+import Navbar from "../../components/Navbar/navbarFeature.jsx";
 import React, { useState, useEffect } from "react";
-import { db } from "../../firebase/firebaseConfig.js";
+import { db } from "../../firebase/firebaseConfig.jsx";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useRouter } from "next/router.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -104,7 +104,7 @@ const Profil = () => {
               <div key={profil.id}>
                 <div className="h-[7rem] bg-[#fff] rounded-lg flex items-center px-8 relative">
                   <div className="flex items-center">
-                    <div className="h-[60px] w-[60px]">{profil.image && <img src={profil.image} alt={profil.name} height={700} width={100} objectFit="cover" />}</div>
+                    <div className="h-[60px] w-[60px]">{profil.image && <Image src={profil.image} alt={profil.name} height={700} width={100} objectFit="cover" />}</div>
                     <div className="ms-2">
                       <p className="text-2xl font-semibold">{profil.name}</p>
                       <p className="text-sm font-light">Ekstrakulikuler</p>
