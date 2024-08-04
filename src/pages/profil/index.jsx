@@ -33,7 +33,7 @@ const Profil = () => {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchDataFromFirestore();
-      setProfilData(data.sort((a, b) => a.name.localeCompare(b.name))); // Sort data by name
+      setProfilData(data.sort((a, b) => a.name.localeCompare(b.name)));
     }
     fetchData();
 

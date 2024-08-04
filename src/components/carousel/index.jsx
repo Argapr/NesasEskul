@@ -40,7 +40,7 @@ const Carousel = () => {
   const images = [
     { src: '/assets/carousel1.jpeg', desc: 'Marching Band' },
     { src: '/assets/carousel2.jpeg', desc: 'Paskibra' },
-    { src: '/assets/about3.jpeg', desc: 'Tari' },
+    { src: '/assets/about3.jpeg', desc: 'Seni Tari' },
   ];
 
   useEffect(() => {

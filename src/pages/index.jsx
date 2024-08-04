@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
-import NesasPintar from "../components/smartchat";
+import NesasPintar from "../components/SmartChat";
 import Image from "next/image";
 import Navbar from "../components/navbar/navbarhome";
-import Carousel from "../components/Carousel";
+import Carousel from "../components/carousel";
 
 const HomePage = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
