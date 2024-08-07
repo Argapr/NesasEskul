@@ -42,7 +42,7 @@ export default function NesasPintar() {
           </div>
         ) : messages.length === 0 ? (
           <div className="flex flex-col justify-center items-center h-full">
-            <Image src="assets/smartchat-logo.png" alt="Logo" className="w-32 h-32 opacity-50" />
+            <img src="assets/smartchat-logo.png" alt="Logo" className="w-32 h-32 opacity-50" />
             <p className="mt-3 text-sm text-center">Tanyakan sesuatu seputar ekstrakulikuler yang ada di SMKN 1 SUBANG</p>
           </div>
         ) : (

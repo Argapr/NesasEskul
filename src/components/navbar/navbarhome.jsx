@@ -12,15 +12,15 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-transparent md:pt-5 px-3">
+      <nav className="rounded-lg md:pt-5 px-3 backdrop-blur-2xl bg-[#ffffff2a]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="logo">
-                <Image src="/logo.png" alt="logo" height={100} width={110} />
+                <Image src="/assets/logo.png" alt="logo" height={100} width={110} />
               </div>
             </div>
-            <div className="hidden md:block backdrop-blur-2xl bg-[#ffffff2a] rounded-full px-8 py-4">
+            <div className="hidden md:block  rounded-full px-8 py-4">
               <div className="space-x-8">
                 <Link href="/" className="text-white">
                   Beranda

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Navbar from "../../components/Navbar/navbarFeature.jsx";
+import Navbar from "../../components/navbar/navbarFeature.jsx";
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebaseConfig";
 import { collection, getDocs, addDoc, query, where, onSnapshot } from "firebase/firestore";
@@ -182,19 +182,19 @@ const Pengumuman = () => {
                   <div key={pengumuman.id}>
                     <div className="h-auto bg-[#ebe3e3b9] p-5 rounded-xl mt-2">
                       <div className="h-[12rem] w-full bg-[#00000083] flex justify-center items-center">
-                        {pengumuman.image && <Image src={pengumuman.image} alt={pengumuman.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "cover" }} />}
+                        {pengumuman.image && <img src={pengumuman.image} alt={pengumuman.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "cover" }} />}
                       </div>
                       <p className="mt-2 font-bold text-3xl">{pengumuman.name}</p>
                       <p className="mt-2">{pengumuman.pengumuman.length > 100 ? pengumuman.pengumuman.substring(0, 110) + "..." : pengumuman.pengumuman}</p>
                       <div className="flex items-center mt-5">
                         <div className="h-7 px-3 bg-[#e9e1e1a1] rounded-xl flex items-center justify-center">
                           <div className="h-5 w-5 bg-white rounded-full items-center flex justify-center">
-                            <Image src="/update.png" alt="" height={10} width={10} />
+                            <Image src="/assets/update.png" alt="" height={10} width={10} />
                           </div>
                           <p className="text-[10px] px-1">{timeText}</p>
                         </div>
                         <div className="w-7 h-7 bg-[#e9e1e1a1] flex items-center justify-center rounded-full ms-3" onClick={() => handleShowDetail(pengumuman.id)}>
-                          <Image src="/speech-bubble.png" alt="" height={15} width={15} />
+                          <Image src="/assets/speech-bubble.png" alt="" height={15} width={15} />
                         </div>
                       </div>
                     </div>

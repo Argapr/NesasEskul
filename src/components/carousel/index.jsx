@@ -8,6 +8,7 @@ const CarouselContainer = styled.div`
   height: 100vh;
   overflow: hidden;
   margin: auto;
+  border-radius: 15px; // Tambahkan border-radius di sini
 `;
 
 const CarouselInner = styled.div`
@@ -23,6 +24,7 @@ const CarouselItem = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
+  border-radius: 15px; // Tambahkan border-radius di sini
 `;
 
 const Description = styled.div`
@@ -38,9 +40,9 @@ const Description = styled.div`
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [
-    { src: '/assets/carousel1.jpeg', desc: 'Marching Band' },
-    { src: '/assets/carousel2.jpeg', desc: 'Paskibra' },
-    { src: '/assets/about3.jpeg', desc: 'Seni Tari' },
+    { src: '/assets/carousel4.jpeg', desc: 'Marching Band' },
+    { src: '/assets/carousel5.jpeg', desc: 'Paskibra' },
+    { src: '/assets/carousel6.jpeg', desc: 'Futsal' },
   ];
 
   useEffect(() => {

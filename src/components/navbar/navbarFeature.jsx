@@ -19,7 +19,7 @@ const Navbar = () => {
             <div className="flex justify-between items-center py-1 md:py-3">
               <div className="flex items-center">
                 <div className="logo">
-                  <Image src="/IMG/logo-black.png" alt="logo" height={100} width={110} />
+                  <Image src="/assets/logo-black.png" alt="logo" height={100} width={110} />
                 </div>
               </div>
               <div className="hidden md:block">

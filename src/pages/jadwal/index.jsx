@@ -1,7 +1,8 @@
-// pages/jadwal.js
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Navbar from '../../components/Navbar/navbarFeature.jsx';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase/firebaseConfig';
 
 const daysInMonth = (month, year) => {
   return new Date(year, month + 1, 0).getDate();
@@ -50,12 +51,14 @@ const Jadwal = () => {
   const [detail, setDetail] = useState('');
 
   useEffect(() => {
-    const dummyEvents = [
-      { kegiatan1: "Senin", kegiatan2: "Rabu", name: "Marching Band" },
-      { kegiatan1: "Selasa", kegiatan2: "Rabu", name: "Futsal" },
-      { kegiatan1: "Jum'at", kegiatan2: "Sabtu", name: "Paskibra" }
-    ];
-    setEvents(dummyEvents);
+    const fetchJadwal = async () => {
+      const jadwalCollection = collection(db, 'Jadwal');
+      const jadwalSnapshot = await getDocs(jadwalCollection);
+      const jadwalList = jadwalSnapshot.docs.map(doc => doc.data());
+      setEvents(jadwalList);
+    };
+
+    fetchJadwal();
   }, []);
 
   const calendar = generateCalendar(month, year);
@@ -88,9 +91,9 @@ const Jadwal = () => {
     const activities = events.filter(event => event.kegiatan1 === dayName || event.kegiatan2 === dayName);
 
     if (activities.length > 0) {
-      setDetail(activities.map(activity => `<p>${activity.name}</p>`).join(''));
+      setDetail(activities.map(activity => `<p style="color: #e0dbdb;">~<strong>${activity.name}</strong></p>`).join(''));
     } else {
-      setDetail(null);
+      setDetail('<p>Tidak ada kegiatan eskul untuk hari ini.</p>');
     }
   };
 
@@ -111,10 +114,10 @@ const Jadwal = () => {
               </h2>
               <div className="flex">
                 <button className="mr-4" onClick={prevMonth}>
-                  <Image src="/IMG/back.png" alt="" height={20} width={20} />
+                  <Image src="/assets/back.png" alt="" height={20} width={20} />
                 </button>
                 <button className="ml-4" onClick={nextMonth}>
-                  <Image src="/IMG/next.png" alt="" height={20} width={20} />
+                  <Image src="/assets/next.png" alt="" height={20} width={20} />
                 </button>
               </div>
             </div>

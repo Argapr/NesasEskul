@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Navbar from "../../components/Navbar/navbarFeature.jsx";
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase/firebaseConfig.jsx";
@@ -104,7 +103,7 @@ const Profil = () => {
               <div key={profil.id}>
                 <div className="h-[7rem] bg-[#fff] rounded-lg flex items-center px-8 relative">
                   <div className="flex items-center">
-                    <div className="h-[60px] w-[60px]">{profil.image && <Image src={profil.image} alt={profil.name} height={700} width={100} objectFit="cover" />}</div>
+                    <div className="h-[60px] w-[60px]">{profil.image && <img src={profil.image} alt={profil.name} height={700} width={100} objectFit="cover" />}</div>
                     <div className="ms-2">
                       <p className="text-2xl font-semibold">{profil.name}</p>
                       <p className="text-sm font-light">Ekstrakulikuler</p>
@@ -120,7 +119,7 @@ const Profil = () => {
           {/* Detail Profile */}
           {selectedProfile && (
             <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-              <div className="bg-white p-5 rounded-lg">
+              <div className="bg-white p-5 rounded-lg md:w-[40%] w-[80%]">
                 <div className="justify-end flex items-center">
                   <button onClick={hideOverlay}>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10">
@@ -145,7 +144,7 @@ const Profil = () => {
                   <h1 className="text-4xl font-bold">{selectedProfile.name}</h1>
                   <p className="mt-2 font-medium">Pembimbing: {selectedProfile.pembimbing}</p>
                   <p className="mt-2 font-medium">Jumlah: {selectedProfile.jumlah} Orang</p>
-                  <p className="text-lg w-[35rem] mt-5">{selectedProfile.deskripsi}</p>
+                  <p className="text-lg mt-5">{selectedProfile.deskripsi}</p>
                 </div>
               </div>
             </div>
